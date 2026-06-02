@@ -10,7 +10,7 @@ program GalagaGame{
 	game.height(10) 		//valor por defecto 5
 	game.width(10) 			//valor por defecto 5
 	game.cellSize(50) 		//valor por defecto 50
-	game.boardGround("fondo2.jpg")  //Agregar Assets
+	game.boardGround("fondo.png")  //Agregar Assets
 
     //juego.configurarJuego()
 
