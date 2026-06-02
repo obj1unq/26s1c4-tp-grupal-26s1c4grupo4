@@ -5,7 +5,7 @@ import nivel.*
 import extras.*
 import wollok.game.*
 
-program  GalagaGame{
+program GalagaGame{
 	game.title("Galaga") 	
 	game.height(10) 		//valor por defecto 5
 	game.width(10) 			//valor por defecto 5
