@@ -1,0 +1,18 @@
+import nave.*
+import enemigo.*
+import keyboard.*
+import nivel.*
+import extras.*
+import wollok.game.*
+
+program GalagaGame{
+	game.title("Galaga") 	
+	game.height(10) 		
+	game.width(10) 			
+	game.cellSize(50) 		// el cell depende del tama;o del asset no puede ser eso. 
+	game.boardGround("fondo.png")  
+
+    //juego.configurarJuego()
+
+	game.start()
+}
