@@ -1,6 +1,6 @@
 import nave.*
 import enemigo.*
-import keyboard.*
+import direccion.*
 import nivel.*
 import extras.*
 import wollok.game.*
@@ -12,7 +12,7 @@ program GalagaGame{
 	game.cellSize(50) 		//valor por defecto 50
 	game.boardGround("fondo.png")  //Agregar Assets
 
-    //juego.configurarJuego()
+    juego.configurarJuego()
 
 	game.start()
 }

@@ -10,29 +10,41 @@ object nave{
     }
 
     method disparar(){
-        var disparo = new Proyectil(position.up(1))
-        game.addVisual(disparo)
+        const proyectilNave = new Proyectil(position = self.position().up(1), image = "disparoN.png", esEnemigo = false)
+        proyectilNave.iniciar(100)
     }
 
+    method recibirImpacto() {
+        game.stop()       
+    }
 }
-
 
 class Proyectil{
     var property position
+    var property image
+    const esEnemigo
 
-    constructor(pos){
-        position = pos
+    method iniciar(tiempo){
+        game.addVisual(image)
+        game.onTick(tiempo, "moverProyectil", { self.moverse() })
+        game.onCollideDo("objetivo", { objeto => self.impactar(objeto) })
     }
 
-    method image(){
-        return "disparo.png"
-    }
-
-    method onTick(){
-        if(position.y() > 0){
-            position = position.up(1)
+    method moverse() {
+        if (esEnemigo) {
+            position = position.down(1)
         } else {
-            game.removeVisual(self)
+            position = position.up(1)   
         }
+    }
+
+   method impactar(objeto) {
+        objeto.recibirImpacto() 
+        self.desaparecer()
+    }
+
+    method desaparecer() {
+        game.removeTickEvent("moverProyectil")
+        game.removeVisual(image)
     }
 }
