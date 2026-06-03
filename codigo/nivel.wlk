@@ -19,17 +19,17 @@ object juego{
 
     method agregarVisuales(){
         game.addVisual(nave)
-        self.enemigoA()
+        //self.enemigoA()       ---> Completar
 
     }
 
 
-    method enemigoA(){
+   /* method enemigoA(){
         const enemigoA = new Enemigo (vida = 1)
         game.addVisual(enemigoA)
         game.onTick(2000, "dispararEnemigoA", { enemigoA.disparar() })
     }
-
+*/
 
 
 }
