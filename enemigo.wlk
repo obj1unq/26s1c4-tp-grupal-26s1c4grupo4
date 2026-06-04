@@ -1,4 +1,5 @@
 import nave.*
+import proyectil.*
 
 class Enemigo {
     var property vida 
@@ -26,8 +27,6 @@ class Enemigo {
     method destruir() {
         game.removeVisual(self)
     }
-
-
 }
 
 class EnemigoA inherits Enemigo{
@@ -35,7 +34,6 @@ class EnemigoA inherits Enemigo{
     override method image() {
         return "enemigoA.png"
     }
-
 }
 
 class EnemigoB inherits Enemigo {

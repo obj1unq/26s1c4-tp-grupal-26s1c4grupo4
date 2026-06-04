@@ -1,8 +1,8 @@
 import nave.*
 import enemigo.*
-import keyboard.*
+import direccion.*
 import nivel.*
-import extras.*
+import proyectil.*
 import wollok.game.*
 
 program GalagaGame{
