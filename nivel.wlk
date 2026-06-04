@@ -1,15 +1,15 @@
 import wollok.game.*
-import personaje.*
-import direcciones.*
+import nave.*
+import direccion.*
 
   object configuracion{
     method keybinds(){
-  keyboard.up().onPressDo({arriba.mover(pj)})           //moverse derecha
-  keyboard.down().onPressDo({abajo.mover(pj)})          //moverse izquierda
-  keyboard.right().onPressDo({derecha.mover(pj)})       //moverse derecha
-  keyboard.left().onPressDo({izquierda.mover(pj)})      //moverse izquierda
-  keyboard.c().onPressDo({pj.disparar()})                    //disparar
-  keyboard.r().onPressDo({pj.restart()})                     //restart
+  keyboard.up().onPressDo({arriba.mover(nave)})           //moverse derecha
+  keyboard.down().onPressDo({abajo.mover(nave)})          //moverse izquierda
+  keyboard.right().onPressDo({derecha.mover(nave)})       //moverse derecha
+  keyboard.left().onPressDo({izquierda.mover(nave)})      //moverse izquierda
+  keyboard.c().onPressDo({nave.disparar()})                    //disparar
+  //keyboard.r().onPressDo({nave.restart()})                     //restart
     
     }
 }

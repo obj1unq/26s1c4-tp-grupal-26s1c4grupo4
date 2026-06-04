@@ -1,6 +1,6 @@
 import wollok.game.*
-import personaje.*
-import enemigos.*
+import nave.*
+import enemigo.*
 
 class Direccion{
     method mover(pj)
