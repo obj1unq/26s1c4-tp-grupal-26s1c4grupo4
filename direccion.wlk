@@ -1,53 +1,33 @@
 import wollok.game.*
-import nave.*
-import enemigo.*
+import personaje.*
+import enemigos.*
 
-class Direccion{
-    method mover(pj)
-    method siguientePosicion(posicion)   
+class Direccion {
+  method mover(pj){
+    pj.position(self.siguientePosicion(pj.position()))
+  }
+
+  method siguientePosicion(posicion) {
+    return game.at(posicion.x() + self.incrementoX(), posicion.y() + self.incrementoY())
+  }
+
+  method incrementoX() = 0
+
+  method incrementoY() = 0
 }
 
-object derecha inherits Direccion{
-    override method mover(pj){
-      pj.position(self.siguientePosicion(pj.position()))
-    }
-
-    override method siguientePosicion(posicion){
-        return game.at(posicion.x() + 1, posicion.y())
-    }
-    
+object derecha inherits Direccion {S
+  override method incrementoX() = 1
 }
 
-object izquierda inherits Direccion{
-    override method mover(pj){
-      pj.position(self.siguientePosicion(pj.position()))
-
-    }
-    override method siguientePosicion(posicion){
-        return game.at(posicion.x() - 1, posicion.y())
-    }
-
+object izquierda inherits Direccion {
+  override method incrementoX() = -1
 }
 
 object arriba inherits Direccion {
-    
-    override method mover(pj) {
-        pj.position(self.siguientePosicion(pj.position()))
-    }
-
-    override method siguientePosicion(posicion) {
-        return game.at(posicion.x(), posicion.y() + 1)
-    }
-
+  override method incrementoY() = 1
 }
 
 object abajo inherits Direccion {
-
-    override method mover(pj) {
-        pj.position(self.siguientePosicion(pj.position()))
-    }
-
-    override method siguientePosicion(posicion) {
-        return game.at(posicion.x(), posicion.y() - 1)
-    }
+  override method incrementoY() = -1
 }
