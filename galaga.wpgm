@@ -6,13 +6,6 @@ import proyectil.*
 import wollok.game.*
 
 program GalagaGame{
-	game.title("Galaga") 	
-	game.height(10) 		
-	game.width(10) 			
-	game.cellSize(50) 		// el cell depende del tama;o del asset no puede ser eso. 
-	game.boardGround("fondo.png")  
-
-    //juego.configurarJuego()
-
+	primerNivel.configurar()
 	game.start()
 }
