@@ -1,7 +1,7 @@
 import proyectil.*
 
 object nave{
-    var property position = game.at(0,0)
+    var property position = game.at(8,0)
 
     method image(){
         return "nave.png"

@@ -2,7 +2,7 @@ import nave.*
 import proyectil.*
 
 class Enemigo {
-    var property vida 
+    var property vida
 
     method position()
 
@@ -34,6 +34,10 @@ class EnemigoA inherits Enemigo{
     override method image() {
         return "enemigoA.png"
     }
+
+    method sumarVida(cantidad) {
+        vida += cantidad
+    }
 }
 
 class EnemigoB inherits Enemigo {
@@ -54,5 +58,14 @@ class EnemigoD inherits Enemigo {
  
     override method image() {
         return "enemigoD.png"
+    }
+}
+
+
+class EnemigoInventado {
+    var vida =3
+
+    method sumarVida(cantidad) {
+        vida += cantidad
     }
 }
