@@ -1,11 +1,27 @@
-import nave.*
-import enemigo.*
-import direccion.*
-import nivel.*
-import proyectil.*
-import wollok.game.*
+import jugador.*
+import config.*
+import hud.*
+
+program galaga{
+    game.title("Galaga")
+    //Dimensiones del tablero
+    game.height(16)
+    game.width(16)
+    game.cellSize(32)
+    //Background 
+    game.boardGround("background.png")
+    //Visuals 
+    game.addVisual(jugador)
+    game.addVisual(contadorVidas)
+    //game.addVisual(contadorVidas)
+    //keybinds 
+    config.keybinds()
+    onTicks.tick()
+    game.start() 
+}
 
 program GalagaGame{
 	primerNivel.configurar()
 	game.start()
 }
+

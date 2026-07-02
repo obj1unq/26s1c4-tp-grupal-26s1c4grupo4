@@ -1,5 +1,5 @@
 import wollok.game.*
-import personaje.*
+import jugador.*
 import enemigos.*
 
 class Direccion {
@@ -16,7 +16,7 @@ class Direccion {
   method incrementoY() = 0
 }
 
-object derecha inherits Direccion {S
+object derecha inherits Direccion {
   override method incrementoX() = 1
 }
 
