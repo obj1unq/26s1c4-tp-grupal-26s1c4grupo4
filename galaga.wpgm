@@ -19,3 +19,9 @@ program galaga{
     onTicks.tick()
     game.start() 
 }
+
+program GalagaGame{
+	primerNivel.configurar()
+	game.start()
+}
+
