@@ -1,24 +1,13 @@
-# Nombre del juego (<- borrar y completar)
+Buenas chicos les dejo lo que faltaria hacer. 
 
-_(Git Grupal: https://docs.google.com/presentation/d/1-o5zEUfuUT72ea8q2rk8mwHSqMkdJvTyQ9Y8eqUTVZA/edit?usp=sharing)_
+En el game over, le deje la pantalla habria que lograr que el juego resete, hay algo de codigo pero no esta finalizado. 
 
-## Equipo de desarrollo
+Hacer el primer segundo nivel. 
 
-- Alguien
-- Persona
-- etc.
+Hacer que las naves enemigas se muevan. 
 
-## Capturas
+Si quieren agregar mas enemigos, sumenlo a la lista y repliquen comportamiento, como si fuera una nave que se mueve en bloque y va disparando. 
 
-(agregar)
+hacer la pantalla de inicio. 
 
-## Reglas de Juego / Instrucciones
-
-(Escribirlas)
-
-
-## Otros
-
-- Curso/Facultad
-- Versión de wollok
-- Una vez terminado, no tenemos problemas en que el repositorio sea público / queremos manternerlo privado.
+Creo que con eso estariamos finalizando 
