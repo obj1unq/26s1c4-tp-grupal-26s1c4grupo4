@@ -1,9 +1,10 @@
-import jugador.*
+import naves.*
+
 object contadorVidas{
-    var position = game.at(12,15)
+    const position = game.at(12,15)
 
     method image(){
-        return "corazon" + jugador.vidas() + ".png"
+        return "corazon" + naveJugador.vidas() + ".png"
     }
     method position(){
         return position 

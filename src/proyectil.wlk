@@ -1,5 +1,5 @@
-import managers.*
-import jugador.*
+import manager.*
+import naves.*
 
 class Proyectil{
     method mover()

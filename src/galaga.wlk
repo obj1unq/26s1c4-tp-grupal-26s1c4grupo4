@@ -1,8 +1,25 @@
-import nave.*
-import enemigo.*
-import direccion.*
+import naves.*
 import proyectil.*
 import wollok.game.*
+import config.*
+import hud.*
+
+
+object galaga {
+  method iniciar() {
+	game.clear()
+	game.cellSize(32)
+	game.height(16)
+	game.width(16)
+	game.title("Galaga")
+	game.boardGround("background.png")
+	game.addVisual(naveJugador)
+	game.addVisual(contadorVidas)
+	config.keybinds()
+	onTicks.tick()
+	game.start()  
+  }
+}
 
 object primerNivel{
   const altoTablero = 15
@@ -16,17 +33,17 @@ object primerNivel{
 	      game.height(altoTablero) 		
 	      game.width(anchoTablero) 			
 	      game.cellSize(225) 		// el cell depende del tama;o del asset no puede ser eso. 
-	      game.boardGround("fondo.png")
+	      game.boardGround("background.png")
 
       //creacion de la nave
-        game.addVisual(nave)
-        game.schedule(5000, {self.spawnEnemigo()})
+        game.addVisual(naveJugador)
+        //game.schedule(5000, {self.spawnEnemigo()})
     }
 
-    method spawnEnemigo() {
+    /*method spawnEnemigo() {
         const enemigo = new EnemigoInventado()
-        self.spawnAleatorio(enemigo)
-    }
+        self.spawnAleatorio()
+    }*/
 
     method spawnAleatorio(enemigo){
         const posicion = new Position(
@@ -56,4 +73,6 @@ object primerNivel{
     }
     
 }
+
+
 
