@@ -22,7 +22,8 @@ object managerEnemigos inherits Manager{
         enemigos.forEach({enemigo => enemigo.remover()})
     }
     method onTickDisparo(){
-        return game.tick(2500,{enemigos.forEach({enemigo => enemigo.disparar()})},true)
+        const intervaloRandomDeDisparo = 4000.randomUpTo(7000) 
+        return game.tick(intervaloRandomDeDisparo,{enemigos.forEach({enemigo => enemigo.disparar()})},true)
     }
 }
 object managerProyectiles inherits Manager{

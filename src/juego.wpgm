@@ -1,0 +1,6 @@
+import galaga.*
+
+program juego{
+   galaga.iniciar()
+}
+
