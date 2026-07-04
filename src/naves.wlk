@@ -77,7 +77,7 @@ class NaveEnemigo{
 /*Mi idea es hacer que los enemigos vayan apareciendo en dsitintas formas, por 
 ejemplo en patrones, voy a empezar a definirlos como WKO y veo si despues los paso a 
 clases, por ahora voy a hacer 1 patron y luego agregar mas*/
-object patronHorizontal3{
+class PatronHorizontal{
     var property posicionInicial = game.center()
 
     method spawnearEnemigos(){
@@ -88,6 +88,32 @@ object patronHorizontal3{
     method spawnearEnemigo(posicion){
         const enemigo = new NaveEnemigo(position = posicion)
         managerEnemigos.agregar(enemigo)
+    }
+}
+
+object patronHorizontal1 inherits PatronHorizontal{
+    
+    override method spawnearEnemigos(){
+        self.spawnearEnemigo(self.posicionInicial())
+        self.spawnearEnemigo(game.at(posicionInicial.x()+3, posicionInicial.y()))
+        self.spawnearEnemigo(game.at(posicionInicial.x()+2, posicionInicial.y()))
+        self.spawnearEnemigo(game.at(posicionInicial.x()+1, posicionInicial.y()))
+        self.spawnearEnemigo(game.at(posicionInicial.x()-1, posicionInicial.y()))
+        self.spawnearEnemigo(game.at(posicionInicial.x()-2, posicionInicial.y()))
+        self.spawnearEnemigo(game.at(posicionInicial.x()-3, posicionInicial.y()))
+    }
+}
+
+object patronHorizontal2 inherits PatronHorizontal{
+    
+    override method spawnearEnemigos(){
+        self.spawnearEnemigo(self.posicionInicial())
+        self.spawnearEnemigo(game.at(posicionInicial.x()+5, posicionInicial.y()))
+        self.spawnearEnemigo(game.at(posicionInicial.x()+3, posicionInicial.y()))
+        self.spawnearEnemigo(game.at(posicionInicial.x()+1, posicionInicial.y()))
+        self.spawnearEnemigo(game.at(posicionInicial.x()-1, posicionInicial.y()))
+        self.spawnearEnemigo(game.at(posicionInicial.x()-3, posicionInicial.y()))
+        self.spawnearEnemigo(game.at(posicionInicial.x()-5, posicionInicial.y()))
     }
 }
 

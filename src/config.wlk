@@ -11,7 +11,6 @@ object config{
         keyboard.a().onPressDo({izquierda.mover(naveJugador)})  //moverse izquierda
         keyboard.f().onPressDo({naveJugador.disparar()})        //disparar
         keyboard.r().onPressDo({ gestorJuego.reiniciarJuego() })         //restart
-        keyboard.enter().onPressDo({ gestorJuego.iniciarJuego() })         //iniciar juego
     }
 }
 
@@ -77,10 +76,6 @@ object gestorJuego {
         onTicks.tick()
     }
 
-    method iniciarJuego(){
-      game.clear()
-      nivelInicio.iniciarJuego()
-    }
 }
 
 class Direccion {
