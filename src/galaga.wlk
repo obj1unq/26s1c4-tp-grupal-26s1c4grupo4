@@ -3,25 +3,23 @@ import proyectil.*
 import wollok.game.*
 import config.*
 import hud.*
+import nivel.*
 
 
 object galaga {
   method iniciar() {
-	game.clear()
-	game.cellSize(32)
-	game.height(16)
-	game.width(16)
-	game.title("Galaga")
-	game.boardGround("background.png")
-	game.addVisual(naveJugador)
-	game.addVisual(contadorVidas)
-	config.keybinds()
-	onTicks.tick()
-	game.start()  
+    game.clear()
+    game.cellSize(32)
+    game.height(16)
+    game.width(16)
+    game.title("Galaga")
+    nivelInicio.iniciar()
+    game.start()
   }
+
 }
 
-object primerNivel{
+/*object primerNivel{
   const altoTablero = 15
   const anchoTablero = 15
   const maximoDeEnemigos = 10
@@ -45,7 +43,7 @@ object primerNivel{
         self.spawnAleatorio()
     }*/
 
-    method spawnAleatorio(enemigo){
+   /* method spawnAleatorio(enemigo){
         const posicion = new Position(
 			    x = 1.randomUpTo(anchoTablero),
 			    y = 15)
@@ -72,7 +70,7 @@ object primerNivel{
       return enemigosSpawneados >= maximoDeEnemigos
     }
     
-}
+}*/
 
 
 
