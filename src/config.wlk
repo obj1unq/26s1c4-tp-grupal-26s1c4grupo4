@@ -3,6 +3,7 @@ import manager.*
 import wollok.game.*
 import galaga.*
 import hud.*
+import nivel.*
 
 object config{
     method keybinds(){
@@ -10,7 +11,7 @@ object config{
         keyboard.a().onPressDo({izquierda.mover(naveJugador)})  //moverse izquierda
         keyboard.f().onPressDo({naveJugador.disparar()})        //disparar
         keyboard.r().onPressDo({ gestorJuego.reiniciarJuego() })         //restart
-       // keyboard.enter().onPressDo({ gestorJuego.iniciarJuego() })         //iniciar juego
+        keyboard.enter().onPressDo({ gestorJuego.iniciarJuego() })         //iniciar juego
     }
 }
 
@@ -74,6 +75,11 @@ object gestorJuego {
         config.keybinds()        
         // 4. Reactivamos los Ticks (esto es clave para que los enemigos vuelvan)
         onTicks.tick()
+    }
+
+    method iniciarJuego(){
+      game.clear()
+      nivelInicio.iniciarJuego()
     }
 }
 
