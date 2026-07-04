@@ -10,6 +10,7 @@ object config{
         keyboard.a().onPressDo({izquierda.mover(naveJugador)})  //moverse izquierda
         keyboard.f().onPressDo({naveJugador.disparar()})        //disparar
         keyboard.r().onPressDo({ gestorJuego.reiniciarJuego() })         //restart
+       // keyboard.enter().onPressDo({ gestorJuego.iniciarJuego() })         //iniciar juego
     }
 }
 
@@ -73,7 +74,6 @@ object gestorJuego {
         config.keybinds()        
         // 4. Reactivamos los Ticks (esto es clave para que los enemigos vuelvan)
         onTicks.tick()
-        
     }
 }
 
