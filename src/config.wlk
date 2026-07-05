@@ -73,7 +73,28 @@ class Direccion {
   }
 
   method siguientePosicion(posicion) {
-    return game.at(posicion.x() + self.incrementoX(), posicion.y() + self.incrementoY())
+    return game.at(self.siguientePosicionXSiPuede(posicion), self.siguientePosicionY(posicion))
+  }
+
+  method siguientePosicionXSiPuede(posicion) {
+    if (self.validarSiguientePosicionX(posicion)) {
+        return posicion.x() + self.incrementoX()
+    } else{
+        return posicion.x()
+    }  
+  }
+
+  method validarSiguientePosicionX(posicion) {
+    return self.siguientePosicionX(posicion).between(1, game.width() - 3)
+  }
+
+  method siguientePosicionX(posicion) {
+    return posicion.x() + self.incrementoX()
+  }
+
+
+  method siguientePosicionY(posicion) {
+    return posicion.y() + self.incrementoY()
   }
 
   method incrementoX() = 0
