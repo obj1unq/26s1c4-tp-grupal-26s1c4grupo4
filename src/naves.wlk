@@ -4,12 +4,23 @@ import hud.*
 import wollok.game.*
 import config.*
 
+class Nave{
+
+    method position()
+
+    method image()
+
+    method disparar()
+
+    method colision()
+}
+
 object naveJugador{
     var property vidas = 3 
     var property position = game.at(7,1)
 
     method image(){
-        return "nave-jugador.png"
+        return "naveJugador.png"
     }
 
     method disparar(){
@@ -22,7 +33,7 @@ object naveJugador{
     } 
     method colision(){
         self.restarVida()
-        game.say(self, "Funciona")
+        //game.say(self, "Funciona")
     
     if (!self.estaViva()) {
             gestorJuego.terminarJuego()
@@ -59,7 +70,7 @@ object naveJugador{
 
 class NaveEnemigo{
     var property position 
-    var property image = "nave-enemigo.png"
+    var property image = "naveEnemigo.png"
     var movioDerecha = true
 
     method disparar(){

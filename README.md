@@ -12,4 +12,6 @@ hacer la pantalla de inicio. //Falta que funcione la musica.
 
 hacer que la nave jugador no salga del tablero.
 
+hay que ordenar el codigo de naves y proyectil, sino nos desaprueban.
+
 Creo que con eso estariamos finalizando 

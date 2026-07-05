@@ -2,8 +2,30 @@ import manager.*
 import naves.*
 
 class Proyectil{
-    method mover()
-    method chocar(objeto)
+    var property position
+
+    method image() = "proyectil" + self.indicador() + ".png"
+
+    method indicador() 
+
+    method mover(){
+        if(!self.alBorde()){
+            position = game.at(self.position().x(), self.position().y() + self.indicadorPosicion())
+        } else {
+            managerProyectiles.remover(self)
+        }
+    }
+
+    method alBorde(){
+        return self.position().y() + self.indicadorPosicion() == game.height()
+    }
+
+    method indicadorPosicion() 
+
+    method chocar(objeto){
+        objeto.colision()
+        managerProyectiles.remover(self) 
+    }
 
     method inicializarColision(){
         game.onCollideDo(self, ({objeto => self.chocar(objeto)}))
@@ -11,46 +33,16 @@ class Proyectil{
 }
 
 class ProyectilJugador inherits Proyectil{
-    var property position  
-    const property image = "proyectil-jugador.png"
+    override method indicador() = "Jugador"
 
-    override method mover(){
-        if(! self.alBorde()){
-            position = game.at(self.position().x(), self.position().y()+1)
-        }else{
-            managerProyectiles.remover(self)
-        }
-    }
-    override method chocar(objeto){
-        objeto.colision()
-        managerProyectiles.remover(self) 
-    }
-    method alBorde(){
-        return self.position().y() + 1 == game.height()
-    }
-    method colision(){
-        
-    }
+    override method indicadorPosicion() = +1
+
+    method colision(){}
 }
 class ProyectilEnemigo inherits Proyectil{
-    var property position   
-    var property image = "proyectil-enemigo.png"
+     override method indicador() = "Enemigo"
 
-    override method mover(){
-        if(! self.alBorde()){
-            position = game.at(self.position().x(), self.position().y()-1)
-        }else{
-            managerProyectiles.remover(self)
-        }
-    }
-    override method chocar(objeto){
-        objeto.colision()
-        managerProyectiles.remover(self) 
-    }
-    method alBorde(){
-        return self.position().y() - 1 == 0 
-    }
-    method colision(){
-        
-    }
+    override method indicadorPosicion() = -1
+
+    method colision(){}
 }
