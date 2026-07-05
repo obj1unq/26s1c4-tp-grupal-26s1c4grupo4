@@ -5,39 +5,41 @@ import wollok.game.*
 import config.*
 
 class Nave{
+    var property position
 
-    method position()
+    method image() = "nave" + self.indicadorImagen() + ".png"
 
-    method image()
+    method indicadorImagen()
 
-    method disparar()
+    method disparar(){
+        const proyectil = self.nuevoProyectil()
+        managerProyectiles.agregar(proyectil)
+        proyectil.inicializarColision()
+    }
+
+    method nuevoProyectil() //= new ProyectilJugador(position = self.positionP())
+
+    method posicionProyectil(){
+        return game.at(self.position().x(), self.position().y() + self.indicadorPosicion())
+    } 
+
+    method indicadorPosicion()
 
     method colision()
 }
 
-object naveJugador{
+object naveJugador inherits Nave(position = game.at(7, 1)){
     var property vidas = 3 
-    var property position = game.at(7,1)
 
-    method image(){
-        return "naveJugador.png"
-    }
+    override method indicadorImagen() = "Jugador"
 
-    method disparar(){
-        const proyectil = new ProyectilJugador(position = self.positionP())
-        managerProyectiles.agregar(proyectil)
-        proyectil.inicializarColision()
-    }
-    method positionP(){
-        return game.at(self.position().x(), self.position().y() +1)
-    } 
-    method colision(){
+    override method nuevoProyectil() = new ProyectilJugador(position = self.posicionProyectil())
+
+    override method indicadorPosicion() = +1
+ 
+    override method colision(){
         self.restarVida()
-        //game.say(self, "Funciona")
-    
-    if (!self.estaViva()) {
-            gestorJuego.terminarJuego()
-        }
+        self.verificarVidas()
     }
  
     method restart(){
@@ -45,54 +47,55 @@ object naveJugador{
         self.position(game.at(7,0))
         self.limpiarTablero()
     }
+
     method limpiarTablero(){
         managerEnemigos.limpiar()
         managerProyectiles.limpiar()
     }
-//Methods relacionados con las vidas de la nave 
-   method restarVida(){
+
+    //Methods relacionados con las vidas de la nave 
+    method restarVida(){
         vidas = vidas - 1 
-   }
-   method estaViva(){
-        return vidas > 0 
-   }
-   method verificarVidas(){
-
-/*Aca quiero que, si no tiene mas vidas, pare el juego*/
-    if(! self.estaViva()){
-        game.stop()
     }
-   }
 
-    method positionInitial() = game.at(7,1)
+    method estaViva(){
+        return vidas > 0 
+    }
 
+    method verificarVidas(){
+    /*Aca quiero que, si no tiene mas vidas, pare el juego*/
+        if(! self.estaViva()){
+            gestorJuego.terminarJuego()
+        }
+    }
+
+    method posicionInicial() = game.at(7,1)
 }
 
-class NaveEnemigo{
-    var property position 
-    var property image = "naveEnemigo.png"
+class NaveEnemigoInicial inherits Nave{
     var movioDerecha = true
 
-    method disparar(){
-        const proyectil = new ProyectilEnemigo(position = game.at(self.position().x(), self.position().y()-1))
-        managerProyectiles.agregar(proyectil)
-        proyectil.inicializarColision()
-    }
+    override method indicadorImagen() = "Enemigo" + self.indicadorImagenEnemigo()
+
+    method indicadorImagenEnemigo() = "Inicial"
+
+    override method nuevoProyectil() = new ProyectilEnemigo(position = self.posicionProyectil())
+
+    override method indicadorPosicion() = -1
+
+
     //Colision con objetos 
-    method colision(){
+    override method colision(){
         managerEnemigos.remover(self) /*aca podria apuntar con una var al manager en vez de usar la 
                                     referencia global, pero no lo veo necesario, el manager siempre va
                                     a ser el mismo*/
     }
 
-
     method mover(direccion){
-        	direccion.mover(self)
-    	}
-
+        direccion.mover(self)
+    }
 	
 	method moverse(){
-
         if(movioDerecha){
             self.mover(derecha)
             movioDerecha = false
@@ -101,7 +104,10 @@ class NaveEnemigo{
             movioDerecha = true
         }
     }
+}
 
+class NaveEnemigoAvanzado inherits NaveEnemigoInicial{
+    override method indicadorImagenEnemigo() = "Avanxado"
 }
 
 
@@ -111,13 +117,15 @@ clases, por ahora voy a hacer 1 patron y luego agregar mas*/
 class PatronHorizontal{
     var property posicionInicial = game.center()
 
+
+
     method spawnearEnemigos(){
         //self.spawnearEnemigo(self.posicionInicial())
         self.spawnearEnemigo(game.at(posicionInicial.x()+1, posicionInicial.y()))
         self.spawnearEnemigo(game.at(posicionInicial.x()-1, posicionInicial.y()))
     }
     method spawnearEnemigo(posicion){
-        const enemigo = new NaveEnemigo(position = posicion)
+        const enemigo = new NaveEnemigoInicial(position = posicion)
         managerEnemigos.agregar(enemigo)
     }
 }
@@ -157,10 +165,11 @@ object enemigoIndividual{
         self.spawnearEnemigo(self.posicionInicial())
     }
     method spawnearEnemigo(posicion){
-        const enemigo = new NaveEnemigo(position =posicion)
+        const enemigo = new NaveEnemigoInicial(position =posicion)
         managerEnemigos.agregar(enemigo)
     }
 }
+
 //Actualizacion: 
 /*el spawn de enemigos funciona hay que mejorar assets y mejorar los patrones de aparicion 
 lo siguiente a hacer es pensar como se puede seleccionar el patron de una lista, asi genera uno aleatorio y despues, cuando el 

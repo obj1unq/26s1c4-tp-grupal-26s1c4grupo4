@@ -4,9 +4,9 @@ import naves.*
 class Proyectil{
     var property position
 
-    method image() = "proyectil" + self.indicador() + ".png"
+    method image() = "proyectil" + self.indicadorImagen() + ".png"
 
-    method indicador() 
+    method indicadorImagen() 
 
     method mover(){
         if(!self.alBorde()){
@@ -33,14 +33,14 @@ class Proyectil{
 }
 
 class ProyectilJugador inherits Proyectil{
-    override method indicador() = "Jugador"
+    override method indicadorImagen() = "Jugador"
 
     override method indicadorPosicion() = +1
 
     method colision(){}
 }
 class ProyectilEnemigo inherits Proyectil{
-     override method indicador() = "Enemigo"
+     override method indicadorImagen() = "Enemigo"
 
     override method indicadorPosicion() = -1
 

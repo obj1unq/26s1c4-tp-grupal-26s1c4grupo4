@@ -38,7 +38,7 @@ class NivelesJuego inherits Nivel {
 
     method configuracionParaNivel(){
         config.keybinds()
-        naveJugador.position(naveJugador.positionInitial())
+        naveJugador.position(naveJugador.posicionInicial())
         game.addVisual(naveJugador)
         game.addVisual(contadorVidas)
     }
