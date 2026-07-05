@@ -1,17 +1,9 @@
+import src.manager.*
 import sonido.*
 import naves.*
 import hud.*
 import config.*
 import wollok.game.*
-
-object fondo {
-    var property imagen = "fondo.png"
-    // El fondo siempre debe posicionarse en el origen (0,0)
-    method position() = game.at(0, 0) 
-
-    method image() = imagen
-}
-
 
 class Nivel {
     method imagenFondo() = "fondo.png"
@@ -35,7 +27,7 @@ object nivelPresentación inherits Nivel {
     override method imagenFondo() = "fondoInicio.png"
 
     method iniciarNivel1(){
-        nivel1.iniciar()
+        managerJuego.pasarASiguienteNivel(nivel1)
     }
 }
 
@@ -43,11 +35,11 @@ object nivel1 inherits Nivel {
     override method iniciar(){
        super() // Hace game.clear() y cambia al fondo de nivel 1
         
-         //Aquí cargas las mecánicas exclusivas de este nivel:
-         config.keybinds()
-         onTicks.tick()
-         patronHorizontal2.spawnearEnemigos()
-         game.addVisual(naveJugador)
+        //Aquí cargas las mecánicas exclusivas de este nivel:
+        config.keybinds()
+        onTicks.tick()
+        patronHorizontal2.spawnearEnemigos()
+        game.addVisual(naveJugador)
         game.addVisual(contadorVidas)
     }
 }
