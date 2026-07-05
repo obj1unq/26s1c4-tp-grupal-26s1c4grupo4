@@ -61,6 +61,7 @@ object naveJugador{
 class NaveEnemigo{
     var property position 
     var property image = "nave-enemigo.png"
+    var movioDerecha = true
 
     method disparar(){
         const proyectil = new ProyectilEnemigo(position = game.at(self.position().x(), self.position().y()-1))
@@ -73,6 +74,24 @@ class NaveEnemigo{
                                     referencia global, pero no lo veo necesario, el manager siempre va
                                     a ser el mismo*/
     }
+
+
+    method mover(direccion){
+        	direccion.mover(self)
+    	}
+
+	
+	method moverse(){
+
+        if(movioDerecha){
+            self.mover(derecha)
+            movioDerecha = false
+        } else {
+            self.mover(izquierda)
+            movioDerecha = true
+        }
+    }
+
 }
 
 

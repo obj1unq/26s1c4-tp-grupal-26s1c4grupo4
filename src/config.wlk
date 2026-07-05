@@ -21,6 +21,7 @@ object onTicks {
     var tickP = null
     var spawnEnemigos = null
     var disparar = null
+    var moverse = null
 
     method tick() {
         // Detener ticks anteriores si existen para evitar conflictos
@@ -29,14 +30,17 @@ object onTicks {
         // Agregar numeros random para el intervalo de disparo de los enemigos y de spawn de enemigos
         const intervaloRandomDeSpawn = 3000.randomUpTo(6000)
         const intervaloRandomDeDisparo = 200.randomUpTo(1000)
+        const intervaloRandomDeMovimiento = 1000.randomUpTo(3000)
 
         tickP = game.tick(intervaloRandomDeDisparo, {managerProyectiles.mover()}, true)
         spawnEnemigos = game.tick(intervaloRandomDeSpawn, {enemigoIndividual.spawnearEnemigos()}, true)
         disparar = managerEnemigos.onTickDisparo()
+        moverse = managerEnemigos.onTickMovimiento()
         
         tickP.start()
         spawnEnemigos.start()
         disparar.start()
+        moverse.start()
     }
 
     method parar() {

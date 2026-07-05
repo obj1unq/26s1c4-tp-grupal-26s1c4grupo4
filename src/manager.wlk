@@ -27,6 +27,13 @@ object managerEnemigos inherits Manager{
         const intervaloRandomDeDisparo = 4000.randomUpTo(7000) 
         return game.tick(intervaloRandomDeDisparo,{enemigos.forEach({enemigo => enemigo.disparar()})},true)
     }
+
+    method onTickMovimiento(){
+        const intervaloRandomDeMovimiento = 1000.randomUpTo(3000) 
+        return game.tick(intervaloRandomDeMovimiento,{enemigos.forEach({enemigo => enemigo.moverse()})},true)
+    }
+
+
 }
 object managerProyectiles inherits Manager{
 /*Este objeto de lo que se encarga es del comportamiento de todos los proyectiles, o sea de todo lo 
