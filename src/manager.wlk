@@ -1,3 +1,5 @@
+import nivel.*
+
 class Manager{
     method mover()
     method limpiar()
@@ -46,4 +48,18 @@ relacionado que va a suceder en pantalla con ellos*/
         proyectiles.forEach({proyectil => proyectil.remove()})
     }
 
+}
+
+object managerJuego {
+    var nivelActual = nivelPresentación
+
+    method iniciarJuego() {
+        nivelActual.iniciar()
+    }
+
+    method pasarASiguienteNivel(nuevoNivel) {
+        game.clear()              // 1. Borra todo lo que está en pantalla (visuales y fondo anterior)
+        nivelActual = nuevoNivel  // 2. Actualiza la referencia del nivel
+        nivelActual.iniciar()     // 3. Carga el nuevo fondo y los nuevos personajes
+    }
 }

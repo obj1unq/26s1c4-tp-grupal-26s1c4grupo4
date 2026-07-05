@@ -7,10 +7,10 @@ import nivel.*
 
 object config{
     method keybinds(){
-        keyboard.d().onPressDo({derecha.mover(naveJugador)})    //moverse derecha
-        keyboard.a().onPressDo({izquierda.mover(naveJugador)})  //moverse izquierda
-        keyboard.f().onPressDo({naveJugador.disparar()})        //disparar
-        keyboard.r().onPressDo({ gestorJuego.reiniciarJuego() })         //restart
+        keyboard.right().onPressDo({derecha.mover(naveJugador)})    //moverse derecha
+        keyboard.left().onPressDo({izquierda.mover(naveJugador)})  //moverse izquierda
+        keyboard.z().onPressDo({naveJugador.disparar()})        //disparar
+        keyboard.x().onPressDo({ gestorJuego.reiniciarJuego() })         //restart
     }
 }
 
