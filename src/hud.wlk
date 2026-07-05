@@ -1,7 +1,7 @@
 import naves.*
 
 object contadorVidas{
-    const position = game.at(12,15)
+    const position = game.at(14,15)
 
     method image(){
         return "corazon" + naveJugador.vidas() + ".png"

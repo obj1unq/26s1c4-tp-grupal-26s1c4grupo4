@@ -1,3 +1,4 @@
+import src.manager.*
 import naves.*
 import proyectil.*
 import wollok.game.*
@@ -8,13 +9,26 @@ import nivel.*
 
 object galaga {
   method iniciar() {
-    game.clear()
+    /*game.clear()
     game.cellSize(32)
     game.height(16)
     game.width(16)
     game.title("Galaga")
-    nivelInicio.iniciar()
+    nivelInicial.iniciar()
+    game.start()*/
+    
+    // 1. Configuración global (Se ejecuta UNA sola vez)
+    game.cellSize(31)
+    game.height(31)
+    game.width(31)
+    game.title("Galaga")
+    
+    // 2. Cargar el nivel inicial (Presentación)
+    nivelPresentación.iniciar()
+    //game.schedule(10, { nivelPresentación.iniciar() })
+    // 3. Arrancar el motor gráfico (Único en todo el proyecto)
     game.start()
+
   }
 
 }
