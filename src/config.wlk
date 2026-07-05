@@ -10,6 +10,9 @@ object config{
         keyboard.right().onPressDo({derecha.mover(naveJugador)})    //moverse derecha
         keyboard.left().onPressDo({izquierda.mover(naveJugador)})  //moverse izquierda
         keyboard.z().onPressDo({naveJugador.disparar()})        //disparar
+        keyboard.t().onPressDo({ managerJuego.pasarASiguienteNivel(nivel2)}) //testear nivel 2
+    }
+    method botonReinicio(){
         keyboard.x().onPressDo({ gestorJuego.reiniciarJuego() })         //restart
     }
 }
@@ -48,12 +51,12 @@ object gestorJuego {
     method terminarJuego() {
         // 1. Limpiamos todo
         game.clear() 
+        config.botonReinicio()
         // 2. Ponemos el fondo negro usando boardGround (así no rompe con strings)
-        fondo.imagen("fondo-Negro.png")
+        game.addVisual(pantallaGameOver)
         
         // 3. Agregamos los visuales (estos objetos deben existir en hud.wlk)
-        game.addVisual(pantallaGameOver)
-        game.addVisual(mensajeReinicio)
+        //fondo.imagen(pantallaGameOver.image())
         game.schedule(3000, { self.reiniciarJuego() })
         
         // 4. Esperamos 3 segundos antes de permitir reiniciar si quisieras, 
@@ -63,9 +66,10 @@ object gestorJuego {
     method reiniciarJuego() {
         // 1. Limpiamos la pantalla de Game Over
         //game.clear()
+        naveJugador.restart()
         managerJuego.pasarASiguienteNivel(nivelPresentación)
         // 2. Reiniciamos lógica de jugador
-        
+        //naveJugador.restart()
         
         // 3. Re-dibujamos el escenario inicial
        /* 
@@ -90,6 +94,7 @@ class Direccion {
   method incrementoX() = 0
 
   method incrementoY() = 0
+
 }
 
 object derecha inherits Direccion {
@@ -106,4 +111,10 @@ object arriba inherits Direccion {
 
 object abajo inherits Direccion {
   override method incrementoY() = -1
+}
+
+object tablero {
+    method dentro(position) {
+        return position.x().between(0, game.width() -1) and position.y().between(0, game.height() -1) 
+    }
 }

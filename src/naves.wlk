@@ -9,7 +9,6 @@ object naveJugador{
     var property vidas = 3 
     var property position = game.at(7,1)
 
-
     method image(){
         return "nave-jugador.png"
     }
@@ -54,6 +53,9 @@ object naveJugador{
         game.stop()
     }
    }
+
+    method positionInitial() = game.at(7,1)
+
 }
 
 class NaveEnemigo{
@@ -81,7 +83,7 @@ class PatronHorizontal{
     var property posicionInicial = game.center()
 
     method spawnearEnemigos(){
-        self.spawnearEnemigo(self.posicionInicial())
+        //self.spawnearEnemigo(self.posicionInicial())
         self.spawnearEnemigo(game.at(posicionInicial.x()+1, posicionInicial.y()))
         self.spawnearEnemigo(game.at(posicionInicial.x()-1, posicionInicial.y()))
     }
@@ -94,20 +96,20 @@ class PatronHorizontal{
 object patronHorizontal1 inherits PatronHorizontal{
     
     override method spawnearEnemigos(){
-        self.spawnearEnemigo(self.posicionInicial())
-        self.spawnearEnemigo(game.at(posicionInicial.x()+3, posicionInicial.y()))
-        self.spawnearEnemigo(game.at(posicionInicial.x()+2, posicionInicial.y()))
-        self.spawnearEnemigo(game.at(posicionInicial.x()+1, posicionInicial.y()))
-        self.spawnearEnemigo(game.at(posicionInicial.x()-1, posicionInicial.y()))
-        self.spawnearEnemigo(game.at(posicionInicial.x()-2, posicionInicial.y()))
-        self.spawnearEnemigo(game.at(posicionInicial.x()-3, posicionInicial.y()))
+        //self.spawnearEnemigo(self.posicionInicial())
+        self.spawnearEnemigo(game.at(posicionInicial.x()+9, posicionInicial.y()+3))
+        self.spawnearEnemigo(game.at(posicionInicial.x()+5, posicionInicial.y()+3))
+        self.spawnearEnemigo(game.at(posicionInicial.x()+1, posicionInicial.y()+3))
+        self.spawnearEnemigo(game.at(posicionInicial.x()-1, posicionInicial.y()+3))
+        self.spawnearEnemigo(game.at(posicionInicial.x()-5, posicionInicial.y()+3))
+        self.spawnearEnemigo(game.at(posicionInicial.x()-9, posicionInicial.y()+3))
     }
 }
 
 object patronHorizontal2 inherits PatronHorizontal{
     
     override method spawnearEnemigos(){
-        self.spawnearEnemigo(self.posicionInicial())
+        //self.spawnearEnemigo(self.posicionInicial())
         self.spawnearEnemigo(game.at(posicionInicial.x()+11, posicionInicial.y()))
         self.spawnearEnemigo(game.at(posicionInicial.x()+7, posicionInicial.y()))
         self.spawnearEnemigo(game.at(posicionInicial.x()+3, posicionInicial.y()))

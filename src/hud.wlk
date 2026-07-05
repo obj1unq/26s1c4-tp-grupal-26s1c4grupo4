@@ -25,8 +25,9 @@ object contadorVidas{
 }
  object pantallaGameOver {
     // Lo ubicamos más o menos en el centro del tablero (que es de 16x16)
-    method position() = game.at(3, 4) 
-    method image() = "gameover.png"
+    method image() = "fondoGameOver.png"
+
+    method position() = game.at(0, 0) 
 }
 
 object mensajeReinicio {
