@@ -8,9 +8,8 @@ import wollok.game.*
 class Nivel {
     method imagenFondo() = "fondo.png"
 
-    // Este método solo inicializa los elementos visuales de ESTE nivel
     method iniciar(){
-        game.clear() // Limpia visuales y fondo del nivel anterior
+        game.clear()
         fondo.imagen(self.imagenFondo())
         game.addVisual(fondo)
     }
@@ -39,7 +38,7 @@ class NivelesJuego inherits Nivel {
 
     method configuracionParaNivel(){
         config.keybinds()
-        naveJugador.position(naveJugador.positionInitial())
+        naveJugador.position(naveJugador.posicionInicial())
         game.addVisual(naveJugador)
         game.addVisual(contadorVidas)
     }
@@ -52,14 +51,12 @@ class NivelesJuego inherits Nivel {
 }
 
 object nivel1 inherits NivelesJuego{
-
     override method enemigosParaEsteNivel(){
         patronHorizontal2.spawnearEnemigos()
     }
 }
 
 object nivel2 inherits NivelesJuego{
-
     override method enemigosParaEsteNivel(){
         patronHorizontal1.spawnearEnemigos()
     }

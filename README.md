@@ -1,15 +1,13 @@
 Buenas chicos les dejo lo que faltaria hacer. 
 
-En el game over, le deje la pantalla habria que lograr que el juego resete, hay algo de codigo pero no esta finalizado. //Hecho
+Falta que funcione la musica.
 
-Hacer el primer segundo nivel. //Hecho
+Hacer que la nave jugador no salga del tablero.
 
-Hacer que las naves enemigas se muevan.  
+Configar el spawn de enemigos, alternarlos con los iniciales y los avanzados
 
-Si quieren agregar mas enemigos, sumenlo a la lista y repliquen comportamiento, como si fuera una nave que se mueve en bloque y va disparando. 
+Recuerden tener el codigo bien ordenado, esto lo que van a calificar
 
-hacer la pantalla de inicio. //Falta que funcione la musica.
-
-hacer que la nave jugador no salga del tablero.
+Finalmente hacer los test y editar este README
 
 Creo que con eso estariamos finalizando 

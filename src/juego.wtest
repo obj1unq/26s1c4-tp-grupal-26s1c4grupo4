@@ -5,7 +5,7 @@ import wollok.game.*
 
 describe "limpieza de managers" {
   test "limpiar enemigos no falla" {
-    const enemigo = new NaveEnemigo(position = game.at(1, 1))
+    const enemigo = new NaveEnemigoInicial(position = game.at(1, 1))
     managerEnemigos.agregar(enemigo)
     managerEnemigos.limpiar()
     assert.that(true)

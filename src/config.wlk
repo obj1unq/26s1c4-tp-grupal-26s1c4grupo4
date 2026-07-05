@@ -12,6 +12,7 @@ object config{
         keyboard.z().onPressDo({naveJugador.disparar()})        //disparar
         keyboard.t().onPressDo({ managerJuego.pasarASiguienteNivel(nivel2)}) //testear nivel 2
     }
+    
     method botonReinicio(){
         keyboard.x().onPressDo({ gestorJuego.reiniciarJuego() })         //restart
     }
@@ -24,7 +25,6 @@ object onTicks {
     var moverse = null
 
     method tick() {
-        // Detener ticks anteriores si existen para evitar conflictos
         self.parar() 
         
         // Agregar numeros random para el intervalo de disparo de los enemigos y de spawn de enemigos
@@ -47,43 +47,24 @@ object onTicks {
         if (tickP != null) tickP.stop()
         if (spawnEnemigos != null) spawnEnemigos.stop()
         // Si disparar es un objeto tick, también deberías detenerlo
-        // if (disparar != null) disparar.stop() 
+        if (disparar != null) disparar.stop() 
+        if(moverse != null) moverse.stop()
     }
 }
 
 object gestorJuego {
     method terminarJuego() {
-        // 1. Limpiamos todo
-        game.clear() 
+        onTicks.parar()
         config.botonReinicio()
-        // 2. Ponemos el fondo negro usando boardGround (así no rompe con strings)
         game.addVisual(pantallaGameOver)
-        
-        // 3. Agregamos los visuales (estos objetos deben existir en hud.wlk)
-        //fondo.imagen(pantallaGameOver.image())
         game.schedule(3000, { self.reiniciarJuego() })
-        
-        // 4. Esperamos 3 segundos antes de permitir reiniciar si quisieras, 
-        // pero como ahora usamos la tecla R, dejamos que el usuario decida.
+
     }
 
     method reiniciarJuego() {
-        // 1. Limpiamos la pantalla de Game Over
-        //game.clear()
         naveJugador.restart()
         managerJuego.pasarASiguienteNivel(nivelPresentación)
-        // 2. Reiniciamos lógica de jugador
-        //naveJugador.restart()
-        
-        // 3. Re-dibujamos el escenario inicial
-       /* 
-        game.addVisual(naveJugador)
-        game.addVisual(contadorVidas)
-        config.keybinds()        
-        // 4. Reactivamos los Ticks (esto es clave para que los enemigos vuelvan)
-        onTicks.tick()*/
     }
-
 }
 
 class Direccion {
@@ -98,7 +79,6 @@ class Direccion {
   method incrementoX() = 0
 
   method incrementoY() = 0
-
 }
 
 object derecha inherits Direccion {
