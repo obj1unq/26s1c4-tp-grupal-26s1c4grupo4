@@ -19,8 +19,8 @@ object galaga {
     
     // 1. Configuración global (Se ejecuta UNA sola vez)
     game.cellSize(31)
-    game.height(31)
-    game.width(31)
+    game.height(32)
+    game.width(32)
     game.title("Galaga")
     
     // 2. Cargar el nivel inicial (Presentación)
