@@ -4,7 +4,6 @@ import hud.*
 import wollok.game.*
 import config.*
 
-
 object naveJugador{
     var property vidas = 3 
     var property position = game.at(7,1)
