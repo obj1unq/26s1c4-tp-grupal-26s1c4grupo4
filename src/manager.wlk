@@ -21,7 +21,7 @@ object managerEnemigos inherits Manager{
         enemigos.remove(enemigo)
     }
     override method limpiar(){
-        enemigos.forEach({enemigo => enemigo.remover()})
+        enemigos.copy().forEach({enemigo => self.remover(enemigo)})
     }
     method onTickDisparo(){
         const intervaloRandomDeDisparo = 4000.randomUpTo(7000) 
@@ -45,7 +45,7 @@ relacionado que va a suceder en pantalla con ellos*/
         game.removeVisual(proyectil)
     }
     override method limpiar(){
-        proyectiles.forEach({proyectil => proyectil.remove()})
+        proyectiles.copy().forEach({proyectil => self.remover(proyectil)})
     }
 
 }

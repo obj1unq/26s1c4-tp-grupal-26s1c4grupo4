@@ -21,7 +21,7 @@ object nivelPresentación inherits Nivel {
     override method iniciar() {
         super() 
         keyboard.enter().onPressDo({ self.iniciarNivel1() })
-        musicaInicio.iniciar() // Descomenta cuando lo uses
+        //musicaInicio.iniciar() // Descomenta cuando lo uses
     }
 
     override method imagenFondo() = "fondoInicio.png"
