@@ -1,0 +1,20 @@
+import manager.*
+import naves.*
+import proyectil.*
+import wollok.game.*
+
+describe "limpieza de managers" {
+  test "limpiar enemigos no falla" {
+    const enemigo = new NaveEnemigo(position = game.at(1, 1))
+    managerEnemigos.agregar(enemigo)
+    managerEnemigos.limpiar()
+    assert.that(true)
+  }
+
+  test "limpiar proyectiles no falla" {
+    const proyectil = new ProyectilJugador(position = game.at(1, 1))
+    managerProyectiles.agregar(proyectil)
+    managerProyectiles.limpiar()
+    assert.that(true)
+  }
+}

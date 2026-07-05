@@ -17,7 +17,7 @@ object explosion {
 }
 
 object musicaInicio {
-	const musicaInicio = game.sound("assets/start.wav")
+	const musicaInicio = game.sound("ost/start.wav")
 
 	method sacarMusica() {
 		musicaInicio.pause()
@@ -32,10 +32,7 @@ object musicaInicio {
 	}
 
 	method iniciar() {
-		if (musicaInicio.paused()){musicaInicio.resume()}
-		else{
-		musicaInicio.volume(0.5)
-		game.schedule(500, { musicaInicio.play()})}
+		game.schedule(500, { musicaInicio.play()})
 	}
 
     //Es la musica de inicio del juego, se reproduce al iniciar el juego y se pausa cuando se inicia la partida. 

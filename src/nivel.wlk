@@ -17,11 +17,9 @@ class Nivel {
 }
 
 object nivelPresentación inherits Nivel {
-    // Al heredar de Nivel, su método iniciar() limpia el juego y pone su fondo
     override method iniciar() {
         super() 
         keyboard.enter().onPressDo({ self.iniciarNivel1() })
-        musicaInicio.iniciar() // Descomenta cuando lo uses
     }
 
     override method imagenFondo() = "fondoInicio.png"
@@ -31,16 +29,39 @@ object nivelPresentación inherits Nivel {
     }
 }
 
-object nivel1 inherits Nivel {
+class NivelesJuego inherits Nivel {
     override method iniciar(){
-       super() // Hace game.clear() y cambia al fondo de nivel 1
-        
-        //Aquí cargas las mecánicas exclusivas de este nivel:
+        super() 
+        self.eventosParaEsteNivel()
+        self.enemigosParaEsteNivel()
+        self.configuracionParaNivel()
+    }
+
+    method configuracionParaNivel(){
         config.keybinds()
-        onTicks.tick()
-        patronHorizontal2.spawnearEnemigos()
+        naveJugador.position(naveJugador.positionInitial())
         game.addVisual(naveJugador)
         game.addVisual(contadorVidas)
+    }
+
+    method eventosParaEsteNivel(){
+        onTicks.tick()
+    }
+
+    method enemigosParaEsteNivel(){}
+}
+
+object nivel1 inherits NivelesJuego{
+
+    override method enemigosParaEsteNivel(){
+        patronHorizontal2.spawnearEnemigos()
+    }
+}
+
+object nivel2 inherits NivelesJuego{
+
+    override method enemigosParaEsteNivel(){
+        patronHorizontal1.spawnearEnemigos()
     }
 }
 
