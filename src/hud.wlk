@@ -15,19 +15,19 @@ object contadorVidas{
 }
 
 class Fondo{
+    var property indicadorFondo = ""
+
     method position() = game.at(0, 0)
 
-    method image()
-
-    method ponerBackground(){
-        game.addVisual(self)
-    }
+    method image() = "fondo" + indicadorFondo + ".png"
 }
 
-object pantallaGameOver inherits Fondo {
-    // Lo ubicamos más o menos en el centro del tablero (que es de 16x16)
-    override method image() = "fondoGameOver.png"
-}
+
+object fondo inherits Fondo{}
+object fondoFinal inherits Fondo(indicadorFondo = "Final"){}
+object fondoGameOver inherits Fondo(indicadorFondo = "GameOver") {}
+object fondoInicial inherits Fondo(indicadorFondo = "Inicial") {}
+
 
 /*Mi idea es hacer que los enemigos vayan apareciendo en dsitintas formas, por 
 ejemplo en patrones, voy a empezar a definirlos como WKO y veo si despues los paso a 

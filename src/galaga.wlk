@@ -7,7 +7,7 @@ object galaga {
     game.height(32)
     game.width(32)
     game.title("Galaga")
-    nivelPresentación.iniciar()
+    nivelInicial.iniciar()
     game.start()
   }
 }
