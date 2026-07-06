@@ -52,7 +52,7 @@ relacionado que va a suceder en pantalla con ellos*/
 }
 
 object managerJuego {
-    var nivelActual = nivelPresentación
+    var nivelActual = nivelInicial
 
     method iniciarJuego() {
         nivelActual.iniciar()
@@ -67,12 +67,12 @@ object managerJuego {
     method terminarJuegoPerdido() {
         onTicks.parar()
         config.botonReinicio()
-        game.addVisual(pantallaGameOver)
+        game.addVisual(fondoGameOver)
         game.schedule(3000, { self.reiniciarJuego() })
     }
 
     method reiniciarJuego() {
         naveJugador.restart()
-        self.pasarASiguienteNivel(nivelPresentación)
+        self.pasarASiguienteNivel(nivelActual)
     }
 }

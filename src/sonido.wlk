@@ -6,18 +6,12 @@ import config.*
 
 object sonidoDisparo {
 	method play() {
-		game.sound("ost/fire.wav").play()
-	}
-}
-
-object explosion {
-	method play() {
-		game.sound("ost/explosion.wav").play()
+		game.sound("ostFire.wav").play()
 	}
 }
 
 object musicaInicio {
-	const musicaInicio = game.sound("ost/start.wav")
+	const musicaInicio = game.sound("ostStart.wav")
 
 	method sacarMusica() {
 		musicaInicio.pause()
@@ -41,18 +35,18 @@ object musicaInicio {
 
 object musicaDañoEnemigo{
     method play() {
-		game.sound("ost/enemy_damage.wav").play()
+		game.sound("ostEnemyDamage.wav").play()
 	}
 }
 
 object musicaExplosionJugador{
     method play() {
-        game.sound("ost/player_destroy.wav").play()
+        game.sound("ostPlayerDestroy.wav").play()
     }
 }
 
 object musicaExplosionEnemigo{
     method play() {
-        game.sound("ost/enemy_destroy.wav").play()
+        game.sound("ostEnemyDestroy.wav").play()
     }
 }
