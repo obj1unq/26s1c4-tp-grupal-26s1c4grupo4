@@ -5,7 +5,7 @@ import hud.*
 import config.*
 import wollok.game.*
 
-class Nivel inherits Background{
+class Nivel inherits Fondo{
     override method image() = "fondo" + self.indicadorImagen() + ".png"
 
     method iniciar(){
@@ -62,21 +62,25 @@ class NivelJuego inherits Nivel{
 
 object nivel1 inherits NivelJuego{
     override method enemigosParaEsteNivel(){    //Nivel1 con patrones de enemigos iniciales
-        patronHorizontal2.spawnearEnemigos()
+        patronHorizontalBasico1.spawnearEnemigos()
+        patronHorizontalBasico2.spawnearEnemigos()
+        patronHorizontalBasico3.spawnearEnemigos()
     }
 }
 
 object nivel2 inherits NivelJuego{
     override method enemigosParaEsteNivel(){    //Nivel2 con una mezca de patrones con enemigos iniciales y avazandos
-        patronHorizontal1.spawnearEnemigos()
+        patronHorizontalBasico2.spawnearEnemigos()
+        patronVerticalAvanzado2.spawnearEnemigos()
+        patronHorizontalBasico3.spawnearEnemigos()
     }
 }
 
 object nivel3 inherits NivelJuego{
     override method enemigosParaEsteNivel(){    //Nivel3 solo con patrones de enemigos avanzados, estos tienen 2 vidas
-        super()
-        patronHorizontal1.spawnearEnemigos()
-        patronHorizontal2.spawnearEnemigos()
+        patronVerticalAvanzado1.spawnearEnemigos()
+        patronVerticalAvanzado2.spawnearEnemigos()
+        patronVerticalAvanzado3.spawnearEnemigos()
     }
 }
 
