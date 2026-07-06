@@ -6,6 +6,7 @@ import config.*
 
 class Nave{
     var property position
+    var property vidas
 
     method image() = "nave" + self.indicadorImagen() + ".png"
 
@@ -25,27 +26,9 @@ class Nave{
 
     method indicadorPosicion()
 
-    method colision()
-}
-
-object naveJugador inherits Nave(position = game.at(7, 1)){
-    var property vidas = 3 
-
-    override method indicadorImagen() = "Jugador"
-
-    override method nuevoProyectil() = new ProyectilJugador(position = self.posicionProyectil())
-
-    override method indicadorPosicion() = +1
- 
-    override method colision(){
+    method colision(){
         self.restarVida()
         self.verificarVidas()
-    }
- 
-    method restart(){
-        self.vidas(3)
-        self.position(self.posicionInicial())
-        self.limpiarTablero()
     }
 
     method limpiarTablero(){
@@ -64,14 +47,35 @@ object naveJugador inherits Nave(position = game.at(7, 1)){
 
     method verificarVidas(){
         if(!self.estaViva()){
-            managerJuego.terminarJuegoPerdido()
+            self.acciónAlPerderTodasLasVidas()
         }
+    }
+
+    method acciónAlPerderTodasLasVidas()
+}
+
+object naveJugador inherits Nave(position = game.at(7, 1), vidas = 3){
+
+    override method indicadorImagen() = "Jugador"
+
+    override method nuevoProyectil() = new ProyectilJugador(position = self.posicionProyectil())
+
+    override method indicadorPosicion() = +1
+
+    override method acciónAlPerderTodasLasVidas(){
+        managerJuego.terminarJuegoPerdido()
+    }
+ 
+    method restart(){
+        self.vidas(3)
+        self.position(self.posicionInicial())
+        self.limpiarTablero()
     }
 
     method posicionInicial() = game.at(7,1)
 }
 
-class NaveEnemigoInicial inherits Nave{
+class NaveEnemigoInicial inherits Nave(vidas = self.vidaEnemigo()){ 
     var movioDerecha = true
 
     override method indicadorImagen() = "Enemigo" + self.indicadorImagenEnemigo()
@@ -82,12 +86,12 @@ class NaveEnemigoInicial inherits Nave{
 
     override method indicadorPosicion() = -1
 
+    method vidaEnemigo() = 1
 
-    //Colision con objetos 
-    override method colision(){
-        managerEnemigos.remover(self) 
+    override method acciónAlPerderTodasLasVidas(){
+        managerEnemigos.remover(self)
     }
-
+    
     method mover(direccion){
         direccion.mover(self)
     }
@@ -105,4 +109,6 @@ class NaveEnemigoInicial inherits Nave{
 
 class NaveEnemigoAvanzado inherits NaveEnemigoInicial{ //Este enemigo tiene dos vidas
     override method indicadorImagenEnemigo() = "Avanzado"
+
+    override method vidaEnemigo() = 2
 }
