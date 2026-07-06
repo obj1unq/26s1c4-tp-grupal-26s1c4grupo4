@@ -14,7 +14,7 @@ object config{
     }
     
     method botonReinicio(){
-        keyboard.x().onPressDo({ gestorJuego.reiniciarJuego() })         //restart
+        keyboard.x().onPressDo({ managerJuego.reiniciarJuego() })         //restart
     }
 }
 
@@ -52,20 +52,6 @@ object onTicks {
     }
 }
 
-object gestorJuego {
-    method terminarJuego() {
-        onTicks.parar()
-        config.botonReinicio()
-        game.addVisual(pantallaGameOver)
-        game.schedule(3000, { self.reiniciarJuego() })
-
-    }
-
-    method reiniciarJuego() {
-        naveJugador.restart()
-        managerJuego.pasarASiguienteNivel(nivelPresentación)
-    }
-}
 
 class Direccion {
   method mover(pj){
