@@ -50,56 +50,47 @@ class PatronEnemigos{
         managerEnemigos.agregar(enemigoAvanzado)
     }
 
-    method spawnearEnemigos()
+    method spawnearEnemigosIniciales()
+
+    method spawnearEnemigosAvanzados()
+
+    method spawnearEnemigosMixtos(){
+        self.spawnearEnemigosIniciales()
+        self.spawnearEnemigosAvanzados()
+    }
 }
 
-class PatronHorizontalInicial inherits PatronEnemigos{
+class PatronCuatroEnemigos inherits PatronEnemigos{
+    var property nuevoValorX
+    var property nuevoValorY
 
-    override method spawnearEnemigos(){
-        self.spawnearEnemigoInicial(self.configurarPosicion(12, self.valorY())) //limite +
-        self.spawnearEnemigoInicial(self.configurarPosicion(4, self.valorY()))
-        self.spawnearEnemigoInicial(self.configurarPosicion(-4, self.valorY()))
-        self.spawnearEnemigoInicial(self.configurarPosicion(-12, self.valorY()))  //limite -
+    override method spawnearEnemigosIniciales(){
+        self.spawnearEnemigoInicial(self.configurarPosicion(12 + nuevoValorX, nuevoValorY)) //limite +
+        self.spawnearEnemigoInicial(self.configurarPosicion(5 + nuevoValorX, nuevoValorY))
+        self.spawnearEnemigoInicial(self.configurarPosicion(-5 + nuevoValorX, nuevoValorY))
+        self.spawnearEnemigoInicial(self.configurarPosicion(-12 + nuevoValorX, nuevoValorY))  //limite -
     }
 
-    method valorY()
-}
-
-object patronHorizontalBasico1 inherits PatronHorizontalInicial{
-    override method valorY() = 0
-}
-
-object patronHorizontalBasico2 inherits PatronHorizontalInicial{
-    override method valorY() = 4
-}
-
-object patronHorizontalBasico3 inherits PatronHorizontalInicial{
-    override method valorY() = 8
-}
-
-class PatronVerticalAvanzado inherits PatronEnemigos{
-
-    override method spawnearEnemigos(){
-        self.spawnearEnemigoAvanzado(self.configurarPosicion(self.valorX(), 10)) //limite +
-        self.spawnearEnemigoAvanzado(self.configurarPosicion(self.valorX(), 5))
-        self.spawnearEnemigoAvanzado(self.configurarPosicion(self.valorX(), 0))
-        self.spawnearEnemigoAvanzado(self.configurarPosicion(self.valorX(), -8))  //limite -
+    override method spawnearEnemigosAvanzados(){
+        self.spawnearEnemigoAvanzado(self.configurarPosicion(nuevoValorX, 10 + nuevoValorY)) //limite +
+        self.spawnearEnemigoAvanzado(self.configurarPosicion(nuevoValorX, 5 + nuevoValorY))
+        self.spawnearEnemigoAvanzado(self.configurarPosicion(nuevoValorX, 0 + nuevoValorY))
+        self.spawnearEnemigoAvanzado(self.configurarPosicion(nuevoValorX, -8 + nuevoValorY))  //limite -
     }
-
-    method valorX()
 }
 
-object patronVerticalAvanzado1 inherits PatronVerticalAvanzado{
-    override method valorX() = -1
-}
+object patronHorizontalBasico1 inherits PatronCuatroEnemigos(nuevoValorX = 1, nuevoValorY = 0){}
 
-object patronVerticalAvanzado2 inherits PatronVerticalAvanzado{
-    override method valorX() = 5
-}
+object patronHorizontalBasico2 inherits PatronCuatroEnemigos(nuevoValorX = 0, nuevoValorY = 4){}
 
-object patronVerticalAvanzado3 inherits PatronVerticalAvanzado{
-    override method valorX() = 9
-}
+object patronHorizontalBasico3 inherits PatronCuatroEnemigos(nuevoValorX = -1, nuevoValorY = 8){}
+
+object patronVerticalAvanzado1 inherits PatronCuatroEnemigos(nuevoValorX = -1, nuevoValorY = 2){}
+
+object patronVerticalAvanzado2 inherits PatronCuatroEnemigos(nuevoValorX = 5, nuevoValorY = 4){}
+
+object patronVerticalAvanzado3 inherits PatronCuatroEnemigos(nuevoValorX = 9, nuevoValorY = 4){}
+
 
 //Actualizacion: 
 /*el spawn de enemigos funciona hay que mejorar assets y mejorar los patrones de aparicion 
