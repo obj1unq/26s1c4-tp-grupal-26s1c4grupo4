@@ -1,4 +1,7 @@
 import nivel.*
+import config.*
+import hud.*
+import naves.*
 
 class Manager{
     method mover(){
@@ -59,5 +62,17 @@ object managerJuego {
         game.clear()              // 1. Borra todo lo que está en pantalla (visuales y fondo anterior)
         nivelActual = nuevoNivel  // 2. Actualiza la referencia del nivel
         nivelActual.iniciar()     // 3. Carga el nuevo fondo y los nuevos personajes
+    }
+
+    method terminarJuegoPerdido() {
+        onTicks.parar()
+        config.botonReinicio()
+        game.addVisual(pantallaGameOver)
+        game.schedule(3000, { self.reiniciarJuego() })
+    }
+
+    method reiniciarJuego() {
+        naveJugador.restart()
+        self.pasarASiguienteNivel(nivelPresentación)
     }
 }

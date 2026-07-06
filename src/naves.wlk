@@ -17,7 +17,7 @@ class Nave{
         proyectil.inicializarColision()
     }
 
-    method nuevoProyectil() //= new ProyectilJugador(position = self.positionP())
+    method nuevoProyectil() 
 
     method posicionProyectil(){
         return game.at(self.position().x(), self.position().y() + self.indicadorPosicion())
@@ -44,7 +44,7 @@ object naveJugador inherits Nave(position = game.at(7, 1)){
  
     method restart(){
         self.vidas(3)
-        self.position(game.at(7,0))
+        self.position(self.posicionInicial())
         self.limpiarTablero()
     }
 
@@ -65,7 +65,7 @@ object naveJugador inherits Nave(position = game.at(7, 1)){
     method verificarVidas(){
     /*Aca quiero que, si no tiene mas vidas, pare el juego*/
         if(! self.estaViva()){
-            gestorJuego.terminarJuego()
+            managerJuego.terminarJuegoPerdido()
         }
     }
 
@@ -107,7 +107,7 @@ class NaveEnemigoInicial inherits Nave{
 }
 
 class NaveEnemigoAvanzado inherits NaveEnemigoInicial{
-    override method indicadorImagenEnemigo() = "Avanxado"
+    override method indicadorImagenEnemigo() = "Avanzado"
 }
 
 
