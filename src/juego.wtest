@@ -20,8 +20,8 @@ describe "limpieza de managers" {
   }
 
   test "esVacia funciona"{
-    patronHorizontalBasico3.spawnearEnemigosIniciales()
-    patronHorizontalBasico1.spawnearEnemigosIniciales()
+    patronHorizontal3.spawnearEnemigosIniciales()
+    patronHorizontal1.spawnearEnemigosIniciales()
     assert.that(!managerEnemigos.estaVacia())
     managerEnemigos.limpiar()
     assert.that(managerEnemigos.estaVacia())
