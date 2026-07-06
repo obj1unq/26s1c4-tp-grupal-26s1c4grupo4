@@ -12,17 +12,22 @@ class Nivel{
     }
 
     method imagenFondo() = fondo
+
+    method pasarASiguienteNivel(){
+        managerJuego.verificarPasarASiguienteNivel(self.siguienteNivel())
+    }
+
+    method siguienteNivel() = nivelInicial
 }
 
 object nivelInicial inherits Nivel{
     override method iniciar() {
         super() 
-        keyboard.enter().onPressDo({ self.iniciarNivel1() })
+        musicaInicio.iniciar()
+        config.keybindInicioNivel1()
     }
 
-    method iniciarNivel1(){
-        managerJuego.pasarASiguienteNivel(nivel1)
-    }
+    override method siguienteNivel() = nivel1
 
     override method imagenFondo() = fondoInicial
 }
@@ -30,8 +35,9 @@ object nivelInicial inherits Nivel{
 object nivelFinal inherits Nivel{   //Para activar esta imagen se debe superar los tres niveles
     override method iniciar() {  
         super() 
-        config.botonReinicio()
+        config.keybindReinicio()
     }
+
     override method imagenFondo() = fondoFinal
 }
 
@@ -60,8 +66,9 @@ class NivelJuego inherits Nivel{
 object nivel1 inherits NivelJuego{
     override method enemigosParaEsteNivel(){    //Nivel1 con patrones de enemigos iniciales
         patronHorizontalBasico2.spawnearEnemigosIniciales()
-        patronHorizontalBasico1.spawnearEnemigosAvanzados()
     }
+
+    override method siguienteNivel() = nivel2
 }
 
 object nivel2 inherits NivelJuego{
@@ -69,6 +76,8 @@ object nivel2 inherits NivelJuego{
         patronVerticalAvanzado2.spawnearEnemigosAvanzados()
         patronHorizontalBasico3.spawnearEnemigosIniciales()
     }
+
+    override method siguienteNivel() = nivel3
 }
 
 object nivel3 inherits NivelJuego{
@@ -76,6 +85,8 @@ object nivel3 inherits NivelJuego{
         patronVerticalAvanzado2.spawnearEnemigosAvanzados()
         patronVerticalAvanzado3.spawnearEnemigosAvanzados()
     }
+
+    override method siguienteNivel() = nivelFinal
 }
 
 

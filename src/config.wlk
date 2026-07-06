@@ -13,8 +13,12 @@ object config{
         keyboard.t().onPressDo({ managerJuego.pasarASiguienteNivel(nivel2)}) //testear nivel 2
     }
     
-    method botonReinicio(){
+    method keybindReinicio(){
         keyboard.x().onPressDo({ managerJuego.reiniciarJuego() })         //restart
+    }
+
+    method keybindInicioNivel1(){
+        keyboard.enter().onPressDo({ nivelInicial.pasarASiguienteNivel()})
     }
 }
 

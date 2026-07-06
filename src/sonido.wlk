@@ -26,7 +26,11 @@ object musicaInicio {
 	}
 
 	method iniciar() {
-		game.schedule(500, { musicaInicio.play()})
+		if(musicaInicio.paused()){
+			musicaInicio.resume()
+		} else {
+			game.schedule(1, { musicaInicio.play() })
+		}
 	}
 
     //Es la musica de inicio del juego, se reproduce al iniciar el juego y se pausa cuando se inicia la partida. 

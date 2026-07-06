@@ -1,3 +1,4 @@
+import src.sonido.*
 import manager.*
 import proyectil.*
 import hud.*
@@ -15,6 +16,7 @@ class Nave{
     method disparar(){
         const proyectil = self.nuevoProyectil()
         managerProyectiles.agregar(proyectil)
+        sonidoDisparo.play()
         proyectil.inicializarColision()
     }
 
