@@ -2,9 +2,7 @@ Buenas chicos les dejo lo que faltaria hacer.
 
 Falta que funcione la musica.
 
-Hacer que la nave jugador no salga del tablero.
-
-Configar el spawn de enemigos, alternarlos con los iniciales y los avanzados
+Configar el comportamiento de los enemigos avanzados, estos tienen dos vidas
 
 Recuerden tener el codigo bien ordenado, esto lo que van a calificar
 
