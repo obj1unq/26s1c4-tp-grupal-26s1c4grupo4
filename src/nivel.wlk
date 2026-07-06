@@ -65,7 +65,8 @@ class NivelJuego inherits Nivel{
 
 object nivel1 inherits NivelJuego{
     override method enemigosParaEsteNivel(){    //Nivel1 con patrones de enemigos iniciales
-        patronHorizontalBasico2.spawnearEnemigosIniciales()
+        patronHorizontal1.spawnearEnemigosIniciales()
+        patronHorizontal2.spawnearEnemigosIniciales()
     }
 
     override method siguienteNivel() = nivel2
@@ -73,8 +74,8 @@ object nivel1 inherits NivelJuego{
 
 object nivel2 inherits NivelJuego{
     override method enemigosParaEsteNivel(){    //Nivel2 con una mezca de patrones con enemigos iniciales y avazandos
-        patronVerticalAvanzado2.spawnearEnemigosAvanzados()
-        patronHorizontalBasico3.spawnearEnemigosIniciales()
+        patronHorizontal2.spawnearEnemigosIniciales()
+        patronHorizontal3.spawnearEnemigosAvanzados()
     }
 
     override method siguienteNivel() = nivel3
@@ -82,8 +83,9 @@ object nivel2 inherits NivelJuego{
 
 object nivel3 inherits NivelJuego{
     override method enemigosParaEsteNivel(){    //Nivel3 solo con patrones de enemigos avanzados, estos tienen 2 vidas
-        patronVerticalAvanzado2.spawnearEnemigosAvanzados()
-        patronVerticalAvanzado3.spawnearEnemigosAvanzados()
+        patronHorizontal1.spawnearEnemigosAvanzados()
+        patronHorizontal2.spawnearEnemigosAvanzados()
+        patronHorizontal3.spawnearEnemigosAvanzados()
     }
 
     override method siguienteNivel() = nivelFinal

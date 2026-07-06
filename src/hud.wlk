@@ -22,7 +22,6 @@ class Fondo{
     method image() = "fondo" + indicadorFondo + ".png"
 }
 
-
 object fondo inherits Fondo{}
 object fondoFinal inherits Fondo(indicadorFondo = "Final"){}
 object fondoGameOver inherits Fondo(indicadorFondo = "GameOver") {}
@@ -49,47 +48,32 @@ class PatronEnemigos{
         const enemigoAvanzado = new NaveEnemigoAvanzado(position = posicion)
         managerEnemigos.agregar(enemigoAvanzado)
     }
-
-    method spawnearEnemigosIniciales()
-
-    method spawnearEnemigosAvanzados()
-
-    method spawnearEnemigosMixtos(){
-        self.spawnearEnemigosIniciales()
-        self.spawnearEnemigosAvanzados()
-    }
 }
 
-class PatronCuatroEnemigos inherits PatronEnemigos{
+class PatronHorizontalCuatroEnemigos inherits PatronEnemigos{
     var property nuevoValorX
     var property nuevoValorY
 
-    override method spawnearEnemigosIniciales(){
-        self.spawnearEnemigoInicial(self.configurarPosicion(12 + nuevoValorX, nuevoValorY)) //limite +
+    method spawnearEnemigosIniciales(){
+        self.spawnearEnemigoInicial(self.configurarPosicion(12 + nuevoValorX, nuevoValorY))
         self.spawnearEnemigoInicial(self.configurarPosicion(5 + nuevoValorX, nuevoValorY))
         self.spawnearEnemigoInicial(self.configurarPosicion(-5 + nuevoValorX, nuevoValorY))
-        self.spawnearEnemigoInicial(self.configurarPosicion(-12 + nuevoValorX, nuevoValorY))  //limite -
+        self.spawnearEnemigoInicial(self.configurarPosicion(-12 + nuevoValorX, nuevoValorY))  
     }
 
-    override method spawnearEnemigosAvanzados(){
-        self.spawnearEnemigoAvanzado(self.configurarPosicion(nuevoValorX, 10 + nuevoValorY)) //limite +
-        self.spawnearEnemigoAvanzado(self.configurarPosicion(nuevoValorX, 5 + nuevoValorY))
-        self.spawnearEnemigoAvanzado(self.configurarPosicion(nuevoValorX, 0 + nuevoValorY))
-        self.spawnearEnemigoAvanzado(self.configurarPosicion(nuevoValorX, -8 + nuevoValorY))  //limite -
+    method spawnearEnemigosAvanzados(){
+        self.spawnearEnemigoAvanzado(self.configurarPosicion(10 + nuevoValorX, nuevoValorY)) 
+        self.spawnearEnemigoAvanzado(self.configurarPosicion(6 + nuevoValorX, nuevoValorY))
+        self.spawnearEnemigoAvanzado(self.configurarPosicion(0 + nuevoValorX, nuevoValorY))
+        self.spawnearEnemigoAvanzado(self.configurarPosicion(-8 + nuevoValorX, nuevoValorY))  
     }
 }
 
-object patronHorizontalBasico1 inherits PatronCuatroEnemigos(nuevoValorX = 1, nuevoValorY = 0){}
+object patronHorizontal1 inherits PatronHorizontalCuatroEnemigos(nuevoValorX = 1, nuevoValorY = 0){}
 
-object patronHorizontalBasico2 inherits PatronCuatroEnemigos(nuevoValorX = 0, nuevoValorY = 4){}
+object patronHorizontal2 inherits PatronHorizontalCuatroEnemigos(nuevoValorX = 0, nuevoValorY = 4){}
 
-object patronHorizontalBasico3 inherits PatronCuatroEnemigos(nuevoValorX = -1, nuevoValorY = 8){}
-
-object patronVerticalAvanzado1 inherits PatronCuatroEnemigos(nuevoValorX = -1, nuevoValorY = 2){}
-
-object patronVerticalAvanzado2 inherits PatronCuatroEnemigos(nuevoValorX = 5, nuevoValorY = 4){}
-
-object patronVerticalAvanzado3 inherits PatronCuatroEnemigos(nuevoValorX = 9, nuevoValorY = 4){}
+object patronHorizontal3 inherits PatronHorizontalCuatroEnemigos(nuevoValorX = -1, nuevoValorY = 8){}
 
 
 //Actualizacion: 

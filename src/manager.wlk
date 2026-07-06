@@ -67,9 +67,9 @@ object managerJuego {
         nivelActual.iniciar()     // 3. Carga el nuevo fondo y los nuevos personajes
     }
 
-    method verificarPasarASiguienteNivel(siguienteNivel){
+    method verificarPasarASiguienteNivel(nuevoNivel){
         if(self.noHayEnemigos()){
-            self.pasarASiguienteNivel(siguienteNivel)
+            self.pasarASiguienteNivel(nuevoNivel)
         }
     }
 

@@ -1,3 +1,4 @@
+import src.hud.*
 import manager.*
 import naves.*
 import proyectil.*
@@ -16,5 +17,13 @@ describe "limpieza de managers" {
     managerProyectiles.agregar(proyectil)
     managerProyectiles.limpiar()
     assert.that(true)
+  }
+
+  test "esVacia funciona"{
+    patronHorizontalBasico3.spawnearEnemigosIniciales()
+    patronHorizontalBasico1.spawnearEnemigosIniciales()
+    assert.that(!managerEnemigos.estaVacia())
+    managerEnemigos.limpiar()
+    assert.that(managerEnemigos.estaVacia())
   }
 }
