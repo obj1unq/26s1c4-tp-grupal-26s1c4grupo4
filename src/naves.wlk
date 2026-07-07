@@ -1,3 +1,4 @@
+import src.sonido.*
 import manager.*
 import proyectil.*
 import hud.*

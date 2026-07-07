@@ -1,3 +1,4 @@
+import src.sonido.*
 import nivel.*
 import config.*
 import hud.*
@@ -23,12 +24,14 @@ class Manager{
         game.addVisual(elemento)
     }
 
+    method estaVacia() = self.lista().isEmpty()
+
     method lista()
 }
 
 object managerEnemigos inherits Manager{
 /*Este objeto se va a encargar de el comportamiento de todo lo relacionado a los enemigos*/
-    const enemigos = []
+    const property enemigos = []
 
     override method lista() = enemigos
 
@@ -46,7 +49,7 @@ object managerEnemigos inherits Manager{
 object managerProyectiles inherits Manager{
 /*Este objeto de lo que se encarga es del comportamiento de todos los proyectiles, o sea de todo lo 
 relacionado que va a suceder en pantalla con ellos*/
-    const proyectiles = [] // aca van a estar todos los proyectiles de la pantalla
+    const property proyectiles = [] // aca van a estar todos los proyectiles de la pantalla
 
     override method lista() = proyectiles
 }
@@ -64,15 +67,25 @@ object managerJuego {
         nivelActual.iniciar()     // 3. Carga el nuevo fondo y los nuevos personajes
     }
 
+    method verificarPasarASiguienteNivel(nuevoNivel){
+        if(self.noHayEnemigos()){
+            self.pasarASiguienteNivel(nuevoNivel)
+        }
+    }
+
+    method noHayEnemigos() = managerEnemigos.estaVacia()
+
     method terminarJuegoPerdido() {
         onTicks.parar()
-        config.botonReinicio()
+        musicaInicio.sacarMusica()
+        config.keybindReinicio()
         game.addVisual(fondoGameOver)
         game.schedule(3000, { self.reiniciarJuego() })
     }
 
     method reiniciarJuego() {
         naveJugador.restart()
-        self.pasarASiguienteNivel(nivelActual)
+        musicaInicio.reiniciar()
+        self.pasarASiguienteNivel(nivelInicial)
     }
 }
