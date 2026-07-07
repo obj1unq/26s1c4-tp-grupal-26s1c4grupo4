@@ -54,6 +54,7 @@ class NivelJuego inherits Nivel{
         naveJugador.position(naveJugador.posicionInicial())
         game.addVisual(naveJugador)
         game.addVisual(contadorVidas)
+        game.onCollideDo(naveJugador,{colisionado => colisionado.colisionasteJugador(naveJugador)})
     }
 
     method eventosParaEsteNivel(){

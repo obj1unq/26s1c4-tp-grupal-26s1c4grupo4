@@ -1,6 +1,8 @@
 import manager.*
 import naves.*
 
+
+// sacar el oncolide de proyectil, ponerlo en nave
 class Proyectil{
     var property position
 
@@ -27,9 +29,6 @@ class Proyectil{
         managerProyectiles.remover(self) 
     }
 
-    method inicializarColision(){
-        game.onCollideDo(self, ({objeto => self.chocar(objeto)}))
-    }
 }
 
 class ProyectilJugador inherits Proyectil{
@@ -38,6 +37,11 @@ class ProyectilJugador inherits Proyectil{
     override method indicadorPosicion() = +1
 
     method colision(){}
+
+    method colisionarEnemigo(enemigo){
+        enemigo.colision()
+    }
+
 }
 class ProyectilEnemigo inherits Proyectil{
      override method indicadorImagen() = "Enemigo"
@@ -45,4 +49,8 @@ class ProyectilEnemigo inherits Proyectil{
     override method indicadorPosicion() = -1
 
     method colision(){}
+
+    method colisionasteJugador(jugador){
+        jugador.colision()
+    }
 }

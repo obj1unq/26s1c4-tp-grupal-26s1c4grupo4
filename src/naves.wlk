@@ -16,8 +16,6 @@ class Nave{
     method disparar(){
         const proyectil = self.nuevoProyectil()
         managerProyectiles.agregar(proyectil)
-        sonidoDisparo.play()
-        proyectil.inicializarColision()
     }
 
     method nuevoProyectil() 
@@ -113,4 +111,5 @@ class NaveEnemigoAvanzado inherits NaveEnemigoInicial{ //Este enemigo tiene dos 
     override method indicadorImagenEnemigo() = "Avanzado"
 
     override method vidaEnemigo() = 2
+    
 }
