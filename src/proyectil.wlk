@@ -53,4 +53,6 @@ class ProyectilEnemigo inherits Proyectil{
     method colisionasteJugador(jugador){
         jugador.colision()
     }
+
+    method colisionarEnemigo(enemigo){}
 }
