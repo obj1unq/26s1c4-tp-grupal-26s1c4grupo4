@@ -43,6 +43,7 @@ class PatronEnemigos{
     method spawnearEnemigoInicial(posicion){
         const enemigoInicial = new NaveEnemigoInicial(position = posicion)
         managerEnemigos.agregar(enemigoInicial)
+        game.onCollideDo(enemigoInicial, {colisionado => colisionado.colisionarEnemigo(enemigoInicial)})
     }
 
     method spawnearEnemigoAvanzado(posicion){
