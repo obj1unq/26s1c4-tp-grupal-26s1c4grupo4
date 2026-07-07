@@ -44,6 +44,11 @@ object managerEnemigos inherits Manager{
         const intervaloRandomDeMovimiento = 1000.randomUpTo(3000) 
         return game.tick(intervaloRandomDeMovimiento,{enemigos.forEach({enemigo => enemigo.moverse()})},true)
     }
+
+    override method agregar(enemigo){
+        super(enemigo)
+        game.onCollideDo(enemigo, {colisionado => colisionado.colisionarEnemigo(enemigo)})
+    }
 }
 
 object managerProyectiles inherits Manager{

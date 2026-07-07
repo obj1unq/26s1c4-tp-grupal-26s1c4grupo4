@@ -15,6 +15,7 @@ class Nave{
 
     method disparar(){
         const proyectil = self.nuevoProyectil()
+        sonidoDisparo.play()
         managerProyectiles.agregar(proyectil)
     }
 
@@ -112,4 +113,8 @@ class NaveEnemigoAvanzado inherits NaveEnemigoInicial{ //Este enemigo tiene dos 
 
     override method vidaEnemigo() = 2
     
+    override method acciónAlPerderTodasLasVidas(){
+        super()
+        game.schedule(1000, {managerEnemigos.agregar(new NaveEnemigoInicial(position = self.position()))})
+    }
 }

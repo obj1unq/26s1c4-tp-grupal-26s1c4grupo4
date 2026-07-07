@@ -39,16 +39,10 @@ class PatronEnemigos{
         return game.at(posicionInicial.x() + valorX, posicionInicial.y() + valorY)
     }
 
-    method spawnearEnemigoInicial(posicion){
-        const enemigoInicial = new NaveEnemigoInicial(position = posicion)
-        managerEnemigos.agregar(enemigoInicial)
-        game.onCollideDo(enemigoInicial, {colisionado => colisionado.colisionarEnemigo(enemigoInicial)})
+    method spawnearEnemigo(enemigo){
+        managerEnemigos.agregar(enemigo)
     }
 
-    method spawnearEnemigoAvanzado(posicion){
-        const enemigoAvanzado = new NaveEnemigoAvanzado(position = posicion)
-        managerEnemigos.agregar(enemigoAvanzado)
-    }
 }
 
 class PatronHorizontalCuatroEnemigos inherits PatronEnemigos{
@@ -56,18 +50,19 @@ class PatronHorizontalCuatroEnemigos inherits PatronEnemigos{
     var property nuevoValorY
 
     method spawnearEnemigosIniciales(){
-        self.spawnearEnemigoInicial(self.configurarPosicion(12 + nuevoValorX, nuevoValorY))
-        self.spawnearEnemigoInicial(self.configurarPosicion(5 + nuevoValorX, nuevoValorY))
-        self.spawnearEnemigoInicial(self.configurarPosicion(-5 + nuevoValorX, nuevoValorY))
-        self.spawnearEnemigoInicial(self.configurarPosicion(-12 + nuevoValorX, nuevoValorY))  
+        self.spawnearEnemigo(new NaveEnemigoInicial(position = self.configurarPosicion(10 + nuevoValorX, nuevoValorY))) 
+        self.spawnearEnemigo(new NaveEnemigoInicial(position = self.configurarPosicion(6 + nuevoValorX, nuevoValorY)))
+        self.spawnearEnemigo(new NaveEnemigoInicial(position = self.configurarPosicion(0 + nuevoValorX, nuevoValorY)))
+        self.spawnearEnemigo(new NaveEnemigoInicial(position = self.configurarPosicion(-8 + nuevoValorX, nuevoValorY)))
     }
 
     method spawnearEnemigosAvanzados(){
-        self.spawnearEnemigoAvanzado(self.configurarPosicion(10 + nuevoValorX, nuevoValorY)) 
-        self.spawnearEnemigoAvanzado(self.configurarPosicion(6 + nuevoValorX, nuevoValorY))
-        self.spawnearEnemigoAvanzado(self.configurarPosicion(0 + nuevoValorX, nuevoValorY))
-        self.spawnearEnemigoAvanzado(self.configurarPosicion(-8 + nuevoValorX, nuevoValorY))  
+        self.spawnearEnemigo(new NaveEnemigoAvanzado(position = self.configurarPosicion(10 + nuevoValorX, nuevoValorY))) 
+        self.spawnearEnemigo(new NaveEnemigoAvanzado(position = self.configurarPosicion(6 + nuevoValorX, nuevoValorY)))
+        self.spawnearEnemigo(new NaveEnemigoAvanzado(position = self.configurarPosicion(0 + nuevoValorX, nuevoValorY)))
+        self.spawnearEnemigo(new NaveEnemigoAvanzado(position = self.configurarPosicion(-8 + nuevoValorX, nuevoValorY))) 
     }
+
 }
 
 object patronHorizontal1 inherits PatronHorizontalCuatroEnemigos(nuevoValorX = 1, nuevoValorY = 0){}
