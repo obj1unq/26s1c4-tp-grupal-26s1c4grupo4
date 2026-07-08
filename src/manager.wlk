@@ -13,7 +13,7 @@ class Manager{
     }
 
     method limpiar(){
-        elementos.forEach({elemento => self.remover(elemento)})
+        elementos.forEach({elemento => game.removeVisual(elemento) })
 
         elementos.clear()
     }
@@ -62,6 +62,11 @@ object managerProyectiles inherits Manager{
 /*Este objeto de lo que se encarga es del comportamiento de todos los proyectiles, o sea de todo lo 
 relacionado que va a suceder en pantalla con ellos*/
     // aca van a estar todos los proyectiles de la pantalla
+
+     method limpiarProyectilesInvisibles(){
+        const intervaloLimpieza = 1000.randomUpTo(3000) 
+        return game.tick(intervaloLimpieza,{elementos.forEach({proyectil => proyectil.limpiarSiEsInvisible()})},true)
+    }
 }
 
 object managerJuego {
@@ -100,6 +105,7 @@ object managerJuego {
 
     method reiniciarJuego() { 
         self.limpiarTablero()      // 1. Vaciamos enemigos y proyectiles
+        musicaInicio.sacarMusica()
         nivelActual = nivelInicial // 2. Volvemos al nivel de introducción/inicial
         naveJugador.restart()      // 3. Reseteamos la nave
         nivelActual.iniciar()      // 4. Arrancamos el nivel inicial de cero

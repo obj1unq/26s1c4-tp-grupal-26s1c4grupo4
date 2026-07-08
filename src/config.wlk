@@ -25,6 +25,8 @@ object onTicks {
     var tickP = null
     var disparar = null
     var moverse = null
+    var velocidadProyectiles = null
+    var limpiarProyectiles = null
 
     method tick() {
         self.parar() 
@@ -37,10 +39,14 @@ object onTicks {
         tickP = game.tick(intervaloRandomDeDisparo, {managerProyectiles.mover()}, true)
         disparar = managerEnemigos.onTickDisparo()
         moverse = managerEnemigos.onTickMovimiento()
+        velocidadProyectiles = game.tick(100, { managerProyectiles.mover()}, true)
+        limpiarProyectiles = managerProyectiles.limpiarProyectilesInvisibles()
         
         tickP.start()
         disparar.start()
         moverse.start()
+        velocidadProyectiles.start()
+        limpiarProyectiles.start()
     }
 
     method parar() {
@@ -49,6 +55,7 @@ object onTicks {
         // Si disparar es un objeto tick, también deberías detenerlo
         if (disparar != null) disparar.stop() 
         if(moverse != null) moverse.stop()
+        if(velocidadProyectiles != null) moverse.stop()
     }
 }
 
