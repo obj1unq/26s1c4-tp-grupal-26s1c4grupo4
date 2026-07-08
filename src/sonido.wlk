@@ -6,21 +6,27 @@ import config.*
 
 object musicaInicio {
 	const musicaInicio = game.sound("ostStart.wav")
+	var property reproduciendo = false
 
 	method sacarMusica() {
-		musicaInicio.stop()
+		if(self.reproduciendo()) {
+			musicaInicio.stop()
+			self.reproduciendo(false)
+		}
 	}
 
 	method reiniciar() {
 		musicaInicio.resume()
+		self.reproduciendo(true)
 	}
 
 	method play() {
 		musicaInicio.play()
+		self.reproduciendo(true)
 	}
 
 	method iniciar() {
-		game.schedule(100, { musicaInicio.play() musicaInicio.volume(0.3) })
+		game.schedule(100, { musicaInicio.play() musicaInicio.volume(0.3) self.reproduciendo(true) })
 	}
 
     //Es la musica de inicio del juego, se reproduce al iniciar el juego y se pausa cuando se inicia la partida. 
