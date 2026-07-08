@@ -29,7 +29,7 @@ object musicaInicio {
 		if(musicaInicio.paused()){
 			musicaInicio.resume()
 		} else {
-			game.schedule(1, { musicaInicio.play() })
+			game.schedule(100, { musicaInicio.play() musicaInicio.volume(0.3) })
 		}
 	}
 
