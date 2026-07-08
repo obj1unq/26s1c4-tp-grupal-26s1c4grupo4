@@ -30,4 +30,108 @@ describe "Funcionamiento del manager de juego" {
     assert.equals(nivel1, managerJuego.nivelActual())
   }
 
+  test "agregar incrementa la cantidad de elementos en el manager" {
+    managerEnemigos.limpiar()
+    managerEnemigos.agregar(new NaveEnemigoInicial(position = game.at(1, 1)))
+    assert.equals(1, managerEnemigos.cantidadEnemigos())
+  }
+
+    test "limpiar deja el manager sin elementos" {
+    managerEnemigos.agregar(new NaveEnemigoInicial(position = game.at(1, 1)))
+    managerEnemigos.agregar(new NaveEnemigoInicial(position = game.at(2, 2)))
+    managerEnemigos.limpiar()
+    assert.equals(0, managerEnemigos.cantidadEnemigos())
+  }
+
+  
 }
+
+describe "Funcionamiento de los patrones de enemigos" {
+
+  test "patronHorizontal3 spawnea 4 enemigos avanzados" {
+    managerEnemigos.limpiar()
+    patronHorizontal3.spawnearEnemigosAvanzados()
+    assert.equals(4, managerEnemigos.cantidadEnemigos())
+  }
+
+  test "patronHorizontal1 spawnea 4 enemigos iniciales" {
+    managerEnemigos.limpiar()
+    patronHorizontal1.spawnearEnemigosIniciales()
+    assert.equals(4, managerEnemigos.cantidadEnemigos())
+  }
+
+}
+
+describe "Proyectiles (proyectil.wlk)" {
+
+  test "un proyectil del jugador que colisiona con un enemigo le aplica daño" {
+    const enemigo = new NaveEnemigoAvanzado(position = game.at(5, 5))
+    const proyectil = new ProyectilJugador(position = game.at(5, 6))
+    proyectil.colisionarEnemigo(enemigo)
+    assert.equals(1, enemigo.vidas())
+  }
+
+  test "un proyectil enemigo que colisiona contra el jugador le resta una vida" {
+    galaga.iniciar()
+    managerJuego.reiniciarJuego()
+    const proyectil = new ProyectilEnemigo(position = game.at(7, 2))
+    proyectil.colisionasteJugador(naveJugador)
+    assert.equals(2, naveJugador.vidas())
+  }
+}
+
+describe "Naves enemigas (naves.wlk)" {
+
+
+  test "NaveEnemigoAvanzado nace con 2 vidas" {
+    const enemigo = new NaveEnemigoAvanzado(position = game.at(5, 5))
+    assert.equals(2, enemigo.vidas())
+  }
+
+  test "un enemigo avanzado no muere con la primera colision, solo pierde una vida" {
+    galaga.iniciar()
+    managerEnemigos.limpiar()
+    const enemigo = new NaveEnemigoAvanzado(position = game.at(5, 5))
+    managerEnemigos.agregar(enemigo)
+    enemigo.colision()
+    assert.equals(1, enemigo.vidas())
+    assert.equals(1, managerEnemigos.cantidadEnemigos())
+  }
+
+
+  test "moverse alterna la direccion entre derecha e izquierda" {
+    galaga.iniciar()
+    const enemigo = new NaveEnemigoInicial(position = game.at(5, 5))
+    enemigo.moverse() // primer movimiento: derecha
+    assert.equals(6, enemigo.position().x())
+    enemigo.moverse() // segundo movimiento: izquierda
+    assert.equals(5, enemigo.position().x())
+  }
+}
+
+describe "Nave jugador (naves.wlk)" {
+
+  test "al iniciar el juego la nave jugador tiene 3 vidas" {
+    galaga.iniciar()
+    managerJuego.reiniciarJuego()
+    assert.equals(3, naveJugador.vidas())
+  }
+
+
+  test "estaViva es false cuando las vidas llegan a 0" {
+    galaga.iniciar()
+    managerJuego.reiniciarJuego()
+    naveJugador.vidas(1)
+    naveJugador.restarVida()
+    assert.notThat(naveJugador.estaViva())
+  }
+
+  test "colision resta una vida a la nave jugador" {
+    galaga.iniciar()
+    managerJuego.reiniciarJuego()
+    naveJugador.colision()
+    assert.equals(2, naveJugador.vidas())
+  }
+  
+}
+
