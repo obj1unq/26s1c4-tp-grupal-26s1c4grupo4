@@ -1,0 +1,33 @@
+import src.nivel.*
+import src.galaga.*
+import src.hud.*
+import manager.*
+import naves.*
+import proyectil.*
+import wollok.game.*
+
+describe "Funcionamiento del manager de juego" {
+
+  test "misma cantidad de enemigos al reiniciar" {
+    galaga.iniciar()
+    managerJuego.pasarASiguienteNivel()
+    assert.equals(4, managerEnemigos.cantidadEnemigos())
+    managerJuego.terminarJuegoPerdido()
+    managerJuego.reiniciarJuego()
+    managerJuego.pasarASiguienteNivel()
+    assert.equals(4, managerEnemigos.cantidadEnemigos())
+  }
+
+  test "mismo nivel al reiniciar" {
+    galaga.iniciar()
+    managerJuego.pasarASiguienteNivel()
+    assert.equals(nivel1, managerJuego.nivelActual())
+    managerJuego.terminarJuegoPerdido()
+    assert.equals(nivel1, managerJuego.nivelActual())
+    managerJuego.reiniciarJuego()
+    assert.equals(nivelInicial, managerJuego.nivelActual())
+    managerJuego.pasarASiguienteNivel()
+    assert.equals(nivel1, managerJuego.nivelActual())
+  }
+
+}

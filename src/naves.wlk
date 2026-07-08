@@ -32,6 +32,7 @@ class Nave{
         self.verificarVidas()
     }
 
+    method colisionarEnemigo(enemigo){}
 
 
     //Methods relacionados con las vidas de la nave 

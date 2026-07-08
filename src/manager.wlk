@@ -13,7 +13,9 @@ class Manager{
     }
 
     method limpiar(){
-        elementos.copy().forEach({elemento => self.remover(elemento)})
+        elementos.forEach({elemento => self.remover(elemento)})
+
+        elementos.clear()
     }
 
     method remover(elemento){
@@ -88,7 +90,7 @@ object managerJuego {
         //musicaInicio.sacarMusica()
         config.keybindReinicio()
         game.addVisual(fondoGameOver)
-        game.schedule(3000, { self.reiniciarJuego() })
+        game.schedule(3000, { game.removeVisual(fondoGameOver) self.reiniciarJuego() })
     }
 
     method limpiarTablero(){
@@ -96,13 +98,10 @@ object managerJuego {
         managerProyectiles.limpiar() 
     }
 
-    method reiniciarJuego() {
-        naveJugador.restart()
-        self.pasarANivelInicial()
-    }
-
-    method pasarANivelInicial(){
-        self.limpiarTablero()
-        nivelInicial.iniciar()
-    }
+    method reiniciarJuego() { 
+        self.limpiarTablero()      // 1. Vaciamos enemigos y proyectiles
+        nivelActual = nivelInicial // 2. Volvemos al nivel de introducción/inicial
+        naveJugador.restart()      // 3. Reseteamos la nave
+        nivelActual.iniciar()      // 4. Arrancamos el nivel inicial de cero
+  } 
 }
