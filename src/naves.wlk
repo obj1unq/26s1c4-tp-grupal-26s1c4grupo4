@@ -48,11 +48,11 @@ class Nave{
 
     method verificarVidas(){
         if(!self.estaViva()){
-            self.acciónAlPerderTodasLasVidas()
+            self.morir()
         }
     }
 
-    method acciónAlPerderTodasLasVidas()
+    method morir()
 }
 
 object naveJugador inherits Nave(position = game.at(7, 1), vidas = 3){
@@ -63,7 +63,7 @@ object naveJugador inherits Nave(position = game.at(7, 1), vidas = 3){
 
     override method indicadorPosicion() = +1
 
-    override method acciónAlPerderTodasLasVidas(){
+    override method morir(){
         managerJuego.terminarJuegoPerdido()
     }
  
@@ -89,7 +89,7 @@ class NaveEnemigoInicial inherits Nave(vidas = self.vidaEnemigo()){
 
     method vidaEnemigo() = 1
 
-    override method acciónAlPerderTodasLasVidas(){
+    override method morir(){
         managerEnemigos.remover(self)
     }
     
@@ -113,7 +113,7 @@ class NaveEnemigoAvanzado inherits NaveEnemigoInicial{ //Este enemigo tiene dos 
 
     override method vidaEnemigo() = 2
     
-    override method acciónAlPerderTodasLasVidas(){
+    override method morir(){
         super()
         game.schedule(1000, {managerEnemigos.agregar(new NaveEnemigoInicial(position = self.position()))})
     }

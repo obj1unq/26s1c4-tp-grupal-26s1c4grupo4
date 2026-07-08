@@ -42,7 +42,6 @@ class PatronEnemigos{
     method spawnearEnemigo(enemigo){
         managerEnemigos.agregar(enemigo)
     }
-
 }
 
 class PatronHorizontalCuatroEnemigos inherits PatronEnemigos{

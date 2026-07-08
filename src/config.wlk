@@ -10,7 +10,6 @@ object config{
         keyboard.right().onPressDo({derecha.mover(naveJugador)})    //moverse derecha
         keyboard.left().onPressDo({izquierda.mover(naveJugador)})  //moverse izquierda
         keyboard.z().onPressDo({naveJugador.disparar()})        //disparar
-        keyboard.t().onPressDo({ managerJuego.pasarASiguienteNivel(nivel2)}) //testear nivel 2
     }
     
     method keybindReinicio(){
@@ -18,7 +17,7 @@ object config{
     }
 
     method keybindInicioNivel1(){
-        keyboard.enter().onPressDo({ nivelInicial.pasarASiguienteNivel()})
+        keyboard.enter().onPressDo({ managerJuego.pasarASiguienteNivel() })
     }
 }
 
