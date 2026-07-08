@@ -31,8 +31,8 @@ object nivelInicial inherits Nivel{
 
 object nivelFinal inherits Nivel{   //Para activar esta imagen se debe superar los tres niveles
     override method iniciar() {  
-        super() 
-        game.schedule(7000, { managerJuego.pasarASiguienteNivel() } )
+        //super() 
+        //game.schedule(7000, { managerJuego.pasarASiguienteNivel() } )
     }
 
     override method imagenFondo() = fondoFinal
@@ -59,13 +59,13 @@ class NivelJuego inherits Nivel{
         game.onTick(100, "proyectilRapido", { managerProyectiles.mover() })
     }
 
-    method enemigosParaEsteNivel(){}
+    method enemigosParaEsteNivel()
 }
 
 object nivel1 inherits NivelJuego{
     override method enemigosParaEsteNivel(){    //Nivel1 con patrones de enemigos iniciales
-        //patronHorizontal1.spawnearEnemigosIniciales()
-        patronHorizontal2.spawnearEnemigosIniciales()
+        patronHorizontal1.spawnearEnemigosIniciales()
+        //patronHorizontal2.spawnearEnemigosIniciales()
     }
 
     override method siguienteNivel() = nivel2
@@ -82,7 +82,7 @@ object nivel2 inherits NivelJuego{
 
 object nivel3 inherits NivelJuego{
     override method enemigosParaEsteNivel(){    //Nivel3 solo con patrones de enemigos avanzados, estos tienen 2 vidas
-        patronHorizontal2.spawnearEnemigosAvanzados()
+        //patronHorizontal2.spawnearEnemigosAvanzados()
         patronHorizontal3.spawnearEnemigosAvanzados()
     }
 

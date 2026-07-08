@@ -1,3 +1,4 @@
+import src.galaga.*
 import src.hud.*
 import manager.*
 import naves.*
@@ -17,6 +18,16 @@ describe "limpieza de managers" {
     managerProyectiles.agregar(proyectil)
     managerProyectiles.limpiar()
     assert.that(true)
+  }
+
+  test "misma cantidad de enemigos al reiniciar" {
+    galaga.iniciar()
+    managerJuego.pasarASiguienteNivel()
+    assert.equals(4, managerEnemigos.cantidadEnemigos())
+    managerJuego.terminarJuegoPerdido()
+    managerJuego.reiniciarJuego()
+    managerJuego.pasarASiguienteNivel()
+    assert.equals(4, managerEnemigos.cantidadEnemigos())
   }
 
 }
