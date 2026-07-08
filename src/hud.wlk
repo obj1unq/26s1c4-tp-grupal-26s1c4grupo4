@@ -49,26 +49,26 @@ class PatronHorizontalCuatroEnemigos inherits PatronEnemigos{
     var property nuevoValorY
 
     method spawnearEnemigosIniciales(){
-        self.spawnearEnemigo(new NaveEnemigoInicial(position = self.configurarPosicion(10 + nuevoValorX, nuevoValorY))) 
-        self.spawnearEnemigo(new NaveEnemigoInicial(position = self.configurarPosicion(6 + nuevoValorX, nuevoValorY)))
+        self.spawnearEnemigo(new NaveEnemigoInicial(position = self.configurarPosicion(6 + nuevoValorX, nuevoValorY))) 
         self.spawnearEnemigo(new NaveEnemigoInicial(position = self.configurarPosicion(0 + nuevoValorX, nuevoValorY)))
-        self.spawnearEnemigo(new NaveEnemigoInicial(position = self.configurarPosicion(-8 + nuevoValorX, nuevoValorY)))
+        self.spawnearEnemigo(new NaveEnemigoInicial(position = self.configurarPosicion(-6 + nuevoValorX, nuevoValorY)))
+        self.spawnearEnemigo(new NaveEnemigoInicial(position = self.configurarPosicion(-12 + nuevoValorX, nuevoValorY)))
     }
 
     method spawnearEnemigosAvanzados(){
-        self.spawnearEnemigo(new NaveEnemigoAvanzado(position = self.configurarPosicion(10 + nuevoValorX, nuevoValorY))) 
-        self.spawnearEnemigo(new NaveEnemigoAvanzado(position = self.configurarPosicion(6 + nuevoValorX, nuevoValorY)))
+        self.spawnearEnemigo(new NaveEnemigoAvanzado(position = self.configurarPosicion(6 + nuevoValorX, nuevoValorY))) 
         self.spawnearEnemigo(new NaveEnemigoAvanzado(position = self.configurarPosicion(0 + nuevoValorX, nuevoValorY)))
-        self.spawnearEnemigo(new NaveEnemigoAvanzado(position = self.configurarPosicion(-8 + nuevoValorX, nuevoValorY))) 
+        self.spawnearEnemigo(new NaveEnemigoAvanzado(position = self.configurarPosicion(-6 + nuevoValorX, nuevoValorY)))
+        self.spawnearEnemigo(new NaveEnemigoAvanzado(position = self.configurarPosicion(-12 + nuevoValorX, nuevoValorY))) 
     }
 
 }
 
-object patronHorizontal1 inherits PatronHorizontalCuatroEnemigos(nuevoValorX = 1, nuevoValorY = 0){}
+object patronHorizontal1 inherits PatronHorizontalCuatroEnemigos(nuevoValorX = 2, nuevoValorY = 0){}
 
 object patronHorizontal2 inherits PatronHorizontalCuatroEnemigos(nuevoValorX = 0, nuevoValorY = 4){}
 
-object patronHorizontal3 inherits PatronHorizontalCuatroEnemigos(nuevoValorX = -1, nuevoValorY = 8){}
+object patronHorizontal3 inherits PatronHorizontalCuatroEnemigos(nuevoValorX = -2, nuevoValorY = 8){}
 
 
 //Actualizacion: 

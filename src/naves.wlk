@@ -15,7 +15,6 @@ class Nave{
 
     method disparar(){
         const proyectil = self.nuevoProyectil()
-        sonidoDisparo.play()
         managerProyectiles.agregar(proyectil)
     }
 
@@ -28,9 +27,12 @@ class Nave{
     method indicadorPosicion()
 
     method colision(){
+        self.sonidoColision()
         self.restarVida()
         self.verificarVidas()
     }
+
+    method sonidoColision()
 
     method colisionarEnemigo(enemigo){}
 
@@ -64,6 +66,15 @@ object naveJugador inherits Nave(position = game.at(7, 1), vidas = 3){
     override method morir(){
         managerJuego.terminarJuegoPerdido()
     }
+
+    override method disparar(){
+        super()
+        sonidoDisparo.play()
+    }
+
+    override method sonidoColision(){
+        sonidoExplosionJugador.play()
+    }
  
     method restart(){
         self.vidas(3)
@@ -89,6 +100,10 @@ class NaveEnemigoInicial inherits Nave(vidas = self.vidaEnemigo()){
     override method morir(){
         managerEnemigos.remover(self)
     }
+
+    override method sonidoColision(){
+        sonidoExplosionEnemigo.play()
+    }
     
     method mover(direccion){
         direccion.mover(self)
@@ -109,6 +124,13 @@ class NaveEnemigoAvanzado inherits NaveEnemigoInicial{ //Este enemigo tiene dos 
     override method indicadorImagenEnemigo() = "Avanzado"
 
     override method vidaEnemigo() = 2
+
+    override method sonidoColision(){
+        if(self.estaViva()){
+            sonidoDanioEnemigo.play()
+        } 
+        super()
+    }
     
     override method morir(){
         super()

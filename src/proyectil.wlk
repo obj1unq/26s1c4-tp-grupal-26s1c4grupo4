@@ -29,6 +29,13 @@ class Proyectil{
         managerProyectiles.remover(self) 
     }
 
+    method limpiarSiEsInvisible(){
+        if(self.esUnoInvisible()){
+            managerProyectiles.remover(self)
+        }
+    }
+
+    method esUnoInvisible()
 }
 
 class ProyectilJugador inherits Proyectil{
@@ -42,7 +49,9 @@ class ProyectilJugador inherits Proyectil{
         enemigo.colision()
     }
 
+    override method esUnoInvisible() = self.position().y() > 50
 }
+
 class ProyectilEnemigo inherits Proyectil{
      override method indicadorImagen() = "Enemigo"
 
@@ -55,4 +64,6 @@ class ProyectilEnemigo inherits Proyectil{
     }
 
     method colisionarEnemigo(enemigo){}
+
+    override method esUnoInvisible() = self.position().y() < -10
 }
