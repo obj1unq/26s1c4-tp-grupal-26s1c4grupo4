@@ -10,7 +10,7 @@ class Manager{
     }
 
     method limpiar(){
-        self.lista().copy().forEach({elemento => self.remover(elemento)})
+        self.lista().forEach({elemento => self.remover(elemento)})
     }
 
     method remover(enemigo){
