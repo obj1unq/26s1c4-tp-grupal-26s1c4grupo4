@@ -32,10 +32,7 @@ class Nave{
         self.verificarVidas()
     }
 
-    method limpiarTablero(){
-        managerEnemigos.limpiar()
-        managerProyectiles.limpiar()
-    }
+
 
     //Methods relacionados con las vidas de la nave 
     method restarVida(){
@@ -70,7 +67,6 @@ object naveJugador inherits Nave(position = game.at(7, 1), vidas = 3){
     method restart(){
         self.vidas(3)
         self.position(self.posicionInicial())
-        self.limpiarTablero()
     }
 
     method posicionInicial() = game.at(7,1)

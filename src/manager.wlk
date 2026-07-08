@@ -1,3 +1,4 @@
+import src.galaga.*
 import src.sonido.*
 import nivel.*
 import config.*
@@ -12,7 +13,7 @@ class Manager{
     }
 
     method limpiar(){
-        elementos.forEach({elemento => self.remover(elemento)})
+        elementos.copy().forEach({elemento => self.remover(elemento)})
     }
 
     method remover(elemento){
@@ -33,7 +34,7 @@ object managerEnemigos inherits Manager{
     method hayEnemigos() = !elementos.isEmpty()
 
     method onTickDisparo(){
-        const intervaloRandomDeDisparo = 4000.randomUpTo(7000) 
+        const intervaloRandomDeDisparo = 2000.randomUpTo(4000) 
         return game.tick(intervaloRandomDeDisparo,{elementos.forEach({enemigo => enemigo.disparar()})},true)
     }
 
@@ -51,6 +52,8 @@ object managerEnemigos inherits Manager{
         super(enemigo)
         managerJuego.validarPasarASiguienteNivel()
     }
+
+    method cantidadEnemigos() = elementos.size()
 }
 
 object managerProyectiles inherits Manager{
@@ -69,8 +72,8 @@ object managerJuego {
     //saber que eso existe, sacar solo lo que necesesito
 
     method pasarASiguienteNivel() {
+        self.limpiarTablero() 
         nivelActual = nivelActual.siguienteNivel()   
-        game.clear()         
         self.iniciarJuego()
     }
 
@@ -82,15 +85,24 @@ object managerJuego {
 
     method terminarJuegoPerdido() {
         onTicks.parar()
-        musicaInicio.sacarMusica()
+        //musicaInicio.sacarMusica()
         config.keybindReinicio()
         game.addVisual(fondoGameOver)
         game.schedule(3000, { self.reiniciarJuego() })
     }
 
+    method limpiarTablero(){
+        managerEnemigos.limpiar()       
+        managerProyectiles.limpiar() 
+    }
+
     method reiniciarJuego() {
         naveJugador.restart()
-        musicaInicio.iniciar()
-        self.pasarASiguienteNivel()
+        self.pasarANivelInicial()
+    }
+
+    method pasarANivelInicial(){
+        self.limpiarTablero()
+        nivelInicial.iniciar()
     }
 }
