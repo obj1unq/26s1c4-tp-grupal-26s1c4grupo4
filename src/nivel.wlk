@@ -3,6 +3,7 @@ import sonido.*
 import naves.*
 import hud.*
 import config.*
+import proyectil.*
 import wollok.game.*
 
 class Nivel{
@@ -59,6 +60,7 @@ class NivelJuego inherits Nivel{
 
     method eventosParaEsteNivel(){
         onTicks.tick()
+        game.onTick(100, "proyectilRapido", { managerProyectiles.mover() })
     }
 
     method enemigosParaEsteNivel(){}
