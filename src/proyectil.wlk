@@ -36,15 +36,15 @@ class Proyectil{
     }
 
     method esUnoInvisible()
+
+    method colision(){}
 }
 
 class ProyectilJugador inherits Proyectil{
     override method indicadorImagen() = "Jugador"
 
     override method indicadorPosicion() = +1
-
-    method colision(){}
-
+    
     method colisionarEnemigo(enemigo){
         enemigo.colision()
     }
@@ -56,9 +56,7 @@ class ProyectilEnemigo inherits Proyectil{
      override method indicadorImagen() = "Enemigo"
 
     override method indicadorPosicion() = -1
-
-    method colision(){}
-
+    
     method colisionasteJugador(jugador){
         jugador.colision()
     }
@@ -66,4 +64,21 @@ class ProyectilEnemigo inherits Proyectil{
     method colisionarEnemigo(enemigo){}
 
     override method esUnoInvisible() = self.position().y() < -10
+}
+
+class VidaExtra inherits Proyectil {
+    override method indicadorImagen() = ""
+
+    override method image() = "corazon1.png" 
+
+    // Va para abajo, por lo que su desplazamiento en Y es negativo (igual que el proyectil enemigo)
+    override method indicadorPosicion() = -1
+
+    // Se limpia sola si el jugador no la agarra y pasa el límite de la pantalla
+    override method esUnoInvisible() = self.position().y() < -10
+
+    method colisionasteJugador(jugador) {
+     jugador.sumarVida()               // Le da el beneficio al jugador
+     managerProyectiles.remover(self)  // Se elimina a sí misma usando el manager existente
+    }
 }

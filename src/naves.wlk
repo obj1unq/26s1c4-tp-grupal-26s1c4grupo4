@@ -53,6 +53,11 @@ class Nave{
     }
 
     method morir()
+
+
+    method sumarVida() {
+     if (vidas < 3) vidas = vidas + 1
+    }
 }
 
 object naveJugador inherits Nave(position = game.at(7, 1), vidas = 3){
