@@ -13,9 +13,22 @@ class Nave{
 
     method indicadorImagen()
 
+    var puedeDisparar = true 
+    const tiempoEntreDisparos = 500
+
+
+
     method disparar(){
-        const proyectil = self.nuevoProyectil()
-        managerProyectiles.agregar(proyectil)
+        if (puedeDisparar) {
+            const proyectil = self.nuevoProyectil()
+            managerProyectiles.agregar(proyectil)
+            
+            puedeDisparar = false
+            
+            // Pasados los 500 milisegundos, volvemos a habilitar el disparo
+            game.schedule(tiempoEntreDisparos, { puedeDisparar = true })
+            
+        }
     }
 
     method nuevoProyectil() 
