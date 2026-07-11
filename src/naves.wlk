@@ -9,7 +9,7 @@ class Nave{
     var property position
     var property vidas
     var puedeDisparar = true 
-    const tiempoEntreDisparos = 500
+    const tiempoEntreDisparos = 300
 
     method image() = "nave" + self.indicadorImagen() + ".png"
 
@@ -113,13 +113,7 @@ class NaveEnemigoInicial inherits Nave(vidas = self.vidaEnemigo()){
     override method indicadorPosicion() = -1
 
     method vidaEnemigo() = 1
-
-    override method colision(){
-    var esNaveJugador = false
-        if(esNaveJugador){
-            super()
-        }
-    }
+    
 
     override method morir(){
         managerEnemigos.remover(self)
@@ -157,6 +151,6 @@ class NaveEnemigoAvanzado inherits NaveEnemigoInicial{ //Este enemigo tiene dos 
     
     override method morir(){
         super()
-        game.schedule(1000, {managerEnemigos.agregar(new NaveEnemigoInicial(position = self.position()))})
+        game.schedule(700, {managerEnemigos.agregar(new NaveEnemigoInicial(position = self.position()))})
     }
 }

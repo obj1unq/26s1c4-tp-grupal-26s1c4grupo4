@@ -6,11 +6,16 @@ import hud.*
 import nivel.*
 
 object config{
+  var property juegoPerdido = false
+
     method keybinds(){
+      if(!juegoPerdido){
         keyboard.right().onPressDo({derecha.mover(naveJugador)})    //moverse derecha
         keyboard.left().onPressDo({izquierda.mover(naveJugador)})  //moverse izquierda
         keyboard.z().onPressDo({naveJugador.disparar()})        //disparar
+      }
     }
+
     
     method keybindReinicio(){
         keyboard.x().onPressDo({ managerJuego.reiniciarJuego() })         //restart

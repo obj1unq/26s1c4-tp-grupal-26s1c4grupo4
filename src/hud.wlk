@@ -2,11 +2,12 @@ import naves.*
 import manager.*
 
 object contadorVidas{
-    const position = game.at(25,30)
+    const position = game.at(27,30)
 
     method image(){
         return "corazon" + naveJugador.vidas() + ".png"
     }
+
     method position(){
         return position 
     }
@@ -60,6 +61,26 @@ class PatronHorizontalCuatroEnemigos inherits PatronEnemigos{
         self.spawnearEnemigo(new NaveEnemigoAvanzado(position = self.configurarPosicion(-12 + nuevoValorX, nuevoValorY))) 
     }
 
+    method spawnearEnemigosMixtos1(){
+        self.spawnearEnemigo(new NaveEnemigoInicial(position = self.configurarPosicion(6 + nuevoValorX, nuevoValorY))) 
+        self.spawnearEnemigo(new NaveEnemigoAvanzado(position = self.configurarPosicion(0 + nuevoValorX, nuevoValorY)))
+        self.spawnearEnemigo(new NaveEnemigoInicial(position = self.configurarPosicion(-6 + nuevoValorX, nuevoValorY)))
+        self.spawnearEnemigo(new NaveEnemigoAvanzado(position = self.configurarPosicion(-12 + nuevoValorX, nuevoValorY))) 
+    }
+
+    method spawnearEnemigosMixtos2(){
+        self.spawnearEnemigo(new NaveEnemigoInicial(position = self.configurarPosicion(6 + nuevoValorX, nuevoValorY))) 
+        self.spawnearEnemigo(new NaveEnemigoAvanzado(position = self.configurarPosicion(0 + nuevoValorX, nuevoValorY)))
+        self.spawnearEnemigo(new NaveEnemigoAvanzado(position = self.configurarPosicion(-6 + nuevoValorX, nuevoValorY)))
+        self.spawnearEnemigo(new NaveEnemigoInicial(position = self.configurarPosicion(-12 + nuevoValorX, nuevoValorY)))
+    }
+
+    method spawnearEnemigosMixtos3(){
+        self.spawnearEnemigo(new NaveEnemigoAvanzado(position = self.configurarPosicion(6 + nuevoValorX, nuevoValorY))) 
+        self.spawnearEnemigo(new NaveEnemigoInicial(position = self.configurarPosicion(0 + nuevoValorX, nuevoValorY)))
+        self.spawnearEnemigo(new NaveEnemigoAvanzado(position = self.configurarPosicion(-6 + nuevoValorX, nuevoValorY)))
+        self.spawnearEnemigo(new NaveEnemigoInicial(position = self.configurarPosicion(-12 + nuevoValorX, nuevoValorY)))
+    }
 }
 
 object patronHorizontal1 inherits PatronHorizontalCuatroEnemigos(nuevoValorX = 3, nuevoValorY = 0){}
