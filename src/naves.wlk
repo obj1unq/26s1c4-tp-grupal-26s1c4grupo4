@@ -8,15 +8,12 @@ import config.*
 class Nave{
     var property position
     var property vidas
+    var puedeDisparar = true 
+    const tiempoEntreDisparos = 500
 
     method image() = "nave" + self.indicadorImagen() + ".png"
 
     method indicadorImagen()
-
-    var puedeDisparar = true 
-    const tiempoEntreDisparos = 500
-
-
 
     method disparar(){
         if (puedeDisparar) {
@@ -27,7 +24,6 @@ class Nave{
             
             // Pasados los 500 milisegundos, volvemos a habilitar el disparo
             game.schedule(tiempoEntreDisparos, { puedeDisparar = true })
-            
         }
     }
 
@@ -67,10 +63,7 @@ class Nave{
 
     method morir()
 
-
-    method sumarVida() {
-     if (vidas < 3) vidas = vidas + 1
-    }
+    method sumarVida() {}
 }
 
 object naveJugador inherits Nave(position = game.at(7, 1), vidas = 3){
@@ -100,6 +93,12 @@ object naveJugador inherits Nave(position = game.at(7, 1), vidas = 3){
     }
 
     method posicionInicial() = game.at(7,1)
+
+    override method sumarVida() {
+     if (vidas < 3) {
+            vidas +=  1
+        }
+    }
 }
 
 class NaveEnemigoInicial inherits Nave(vidas = self.vidaEnemigo()){ 
@@ -114,6 +113,13 @@ class NaveEnemigoInicial inherits Nave(vidas = self.vidaEnemigo()){
     override method indicadorPosicion() = -1
 
     method vidaEnemigo() = 1
+
+    override method colision(){
+    var esNaveJugador = false
+        if(esNaveJugador){
+            super()
+        }
+    }
 
     override method morir(){
         managerEnemigos.remover(self)
@@ -147,7 +153,6 @@ class NaveEnemigoAvanzado inherits NaveEnemigoInicial{ //Este enemigo tiene dos 
         if(self.estaViva()){
             sonidoDanioEnemigo.play()
         } 
-        super()
     }
     
     override method morir(){

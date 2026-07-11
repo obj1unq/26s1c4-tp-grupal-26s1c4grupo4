@@ -10,8 +10,6 @@ object contadorVidas{
     method position(){
         return position 
     }
-
-    method colision(){}
 }
 
 class Fondo{
@@ -64,11 +62,11 @@ class PatronHorizontalCuatroEnemigos inherits PatronEnemigos{
 
 }
 
-object patronHorizontal1 inherits PatronHorizontalCuatroEnemigos(nuevoValorX = 2, nuevoValorY = 0){}
+object patronHorizontal1 inherits PatronHorizontalCuatroEnemigos(nuevoValorX = 3, nuevoValorY = 0){}
 
 object patronHorizontal2 inherits PatronHorizontalCuatroEnemigos(nuevoValorX = 0, nuevoValorY = 4){}
 
-object patronHorizontal3 inherits PatronHorizontalCuatroEnemigos(nuevoValorX = -2, nuevoValorY = 8){}
+object patronHorizontal3 inherits PatronHorizontalCuatroEnemigos(nuevoValorX = -3, nuevoValorY = 8){}
 
 
 //Actualizacion: 

@@ -22,40 +22,30 @@ object config{
 }
 
 object onTicks {
-    var tickP = null
-    var disparar = null
-    var moverse = null
+    var enemigosQuedisparen = null
+    var enemigosConMovimiento = null
     var velocidadProyectiles = null
-    var limpiarProyectiles = null
+    var limpiarProyectilesInvisibles = null
 
     method tick() {
         self.parar() 
-        
-        // Agregar numeros random para el intervalo de disparo de los enemigos y de spawn de enemigos
-        //const intervaloRandomDeSpawn = 3000.randomUpTo(6000)
-        const intervaloRandomDeDisparo = 200.randomUpTo(1000)
-        const intervaloRandomDeMovimiento = 1000.randomUpTo(3000)
 
-        tickP = game.tick(intervaloRandomDeDisparo, {managerProyectiles.mover()}, true)
-        disparar = managerEnemigos.onTickDisparo()
-        moverse = managerEnemigos.onTickMovimiento()
-        velocidadProyectiles = game.tick(100, { managerProyectiles.mover()}, true)
-        limpiarProyectiles = managerProyectiles.limpiarProyectilesInvisibles()
+        enemigosQuedisparen = managerEnemigos.onTickDisparo()
+        enemigosConMovimiento = managerEnemigos.onTickMovimiento()
+        velocidadProyectiles = managerProyectiles.onTickVelocidadProyectiles()
+        limpiarProyectilesInvisibles = managerProyectiles.limpiarProyectilesInvisibles()
         
-        tickP.start()
-        disparar.start()
-        moverse.start()
+        enemigosQuedisparen.start()
+        enemigosConMovimiento.start()
         velocidadProyectiles.start()
-        limpiarProyectiles.start()
+        limpiarProyectilesInvisibles.start()
     }
 
     method parar() {
-        if (tickP != null) tickP.stop()
-        //if (spawnEnemigos != null) spawnEnemigos.stop()
-        // Si disparar es un objeto tick, también deberías detenerlo
-        if (disparar != null) disparar.stop() 
-        if(moverse != null) moverse.stop()
-        if(velocidadProyectiles != null) moverse.stop()
+        if(enemigosQuedisparen != null) enemigosQuedisparen.stop() 
+        if(enemigosConMovimiento != null) enemigosConMovimiento.stop()
+        if(velocidadProyectiles != null) velocidadProyectiles.stop()
+        if(limpiarProyectilesInvisibles != null) limpiarProyectilesInvisibles.stop()
     }
 }
 

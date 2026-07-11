@@ -32,21 +32,28 @@ class Manager {
 
 object managerEnemigos inherits Manager {
     /* Este objeto se va a encargar de el comportamiento de todo lo relacionado a los enemigos */
-
     var enemigosDerrotados = 0 
 
     method hayEnemigos() = !elementos.isEmpty()
 
     override method remover(enemigo) {
         super(enemigo)
-        enemigosDerrotados = enemigosDerrotados + 1
-
-        if (enemigosDerrotados.rem(4) == 0) {
-            self.spawnearVidaExtra(enemigo.position())
-        }
-
+        self.sumarEnemigoDerrotado()
+        self.spawnearVidaExtraAlDerrotarEnemigos(8, enemigo)
         managerJuego.validarPasarASiguienteNivel()
     }
+
+    method sumarEnemigoDerrotado(){
+        enemigosDerrotados += 1
+    }
+
+    method spawnearVidaExtraAlDerrotarEnemigos(numero, enemigo){
+        if (self.puedeSpawnearVidaExtra(numero)) {
+            self.spawnearVidaExtra(enemigo.position())
+        }
+    }
+
+    method puedeSpawnearVidaExtra(numero) = enemigosDerrotados.rem(numero) == 0
 
     method spawnearVidaExtra(posicion) {
         const vida = new VidaExtra(position = posicion)
@@ -65,7 +72,7 @@ object managerEnemigos inherits Manager {
 
     override method agregar(enemigo) {
         super(enemigo)
-        game.onCollideDo(enemigo, {colisionado => colisionado.colisionarEnemigo(enemigo)})
+        game.onCollideDo(enemigo, {colisionado => colisionado.colisionar(enemigo)})
     }
 
     method cantidadEnemigos() = elementos.size()
@@ -74,6 +81,11 @@ object managerEnemigos inherits Manager {
 object managerProyectiles inherits Manager {
     /* Este objeto de lo que se encarga es del comportamiento de todos los proyectiles, o sea de todo lo 
     relacionado que va a suceder en pantalla con ellos */
+
+    method onTickVelocidadProyectiles() {
+        const intervaloVelocidad = 70
+        return game.tick(intervaloVelocidad, {self.mover()}, true)
+    }
 
     method limpiarProyectilesInvisibles() {
         const intervaloLimpieza = 1000.randomUpTo(3000) 
