@@ -11,11 +11,11 @@ describe "Funcionamiento del manager de juego" {
   test "misma cantidad de enemigos al reiniciar" {
     galaga.iniciar()
     managerJuego.pasarASiguienteNivel()
-    assert.equals(8, managerEnemigos.cantidadEnemigos())
+    assert.equals(12, managerEnemigos.cantidadEnemigos())
     managerJuego.terminarJuegoPerdido()
     managerJuego.reiniciarJuego()
     managerJuego.pasarASiguienteNivel()
-    assert.equals(8, managerEnemigos.cantidadEnemigos())
+    assert.equals(12, managerEnemigos.cantidadEnemigos())
   }
 
   test "mismo nivel al reiniciar" {

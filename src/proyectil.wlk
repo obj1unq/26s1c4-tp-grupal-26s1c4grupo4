@@ -37,7 +37,7 @@ class Proyectil{
 
     method esUnoInvisible()
 
-    method colision(){}
+    method colision(nave){}
 }
 
 class ProyectilJugador inherits Proyectil{
@@ -53,7 +53,7 @@ class ProyectilJugador inherits Proyectil{
 }
 
 class ProyectilEnemigo inherits Proyectil{
-     override method indicadorImagen() = "Enemigo"
+    override method indicadorImagen() = "Enemigo"
 
     override method indicadorPosicion() = -1
     
@@ -66,19 +66,15 @@ class ProyectilEnemigo inherits Proyectil{
     override method esUnoInvisible() = self.position().y() < -10
 }
 
-class VidaExtra inherits Proyectil {
+class VidaExtra inherits ProyectilEnemigo {
     override method indicadorImagen() = ""
 
     override method image() = "corazon1.png" 
 
-    // Va para abajo, por lo que su desplazamiento en Y es negativo (igual que el proyectil enemigo)
-    override method indicadorPosicion() = -1
-
-    // Se limpia sola si el jugador no la agarra y pasa el límite de la pantalla
-    override method esUnoInvisible() = self.position().y() < -10
-
-    method colisionasteJugador(jugador) {
-     jugador.sumarVida()               // Le da el beneficio al jugador
-     managerProyectiles.remover(self)  // Se elimina a sí misma usando el manager existente
+    override method colisionasteJugador(jugador) {
+        jugador.sumarVida()               // Le da el beneficio al jugador
+        managerProyectiles.remover(self)  // Se elimina a sí misma usando el manager existente
     }
 }
+
+//Hay que arrglegar las colisiones, debe haber solo un metodo de colision.
