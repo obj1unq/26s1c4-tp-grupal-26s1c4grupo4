@@ -53,7 +53,7 @@ class NivelJuego inherits Nivel{
         naveJugador.position(naveJugador.posicionInicial())
         game.addVisual(naveJugador)
         game.addVisual(contadorVidas)
-        game.onCollideDo(naveJugador, {colisionado => colisionado.colisionasteJugador(naveJugador)})
+        game.onCollideDo(naveJugador, {objeto => objeto.colisionarCon(naveJugador)})
     }
 
     method enemigosParaEsteNivel()
@@ -62,7 +62,7 @@ class NivelJuego inherits Nivel{
 object nivel1 inherits NivelJuego{
     override method enemigosParaEsteNivel(){    //Nivel1 con patrones de enemigos iniciales
         patronHorizontal1.spawnearEnemigosIniciales()
-        patronHorizontal2.spawnearEnemigosIniciales()
+       // patronHorizontal2.spawnearEnemigosIniciales()
         patronHorizontal3.spawnearEnemigosIniciales()
     }
 
@@ -72,7 +72,7 @@ object nivel1 inherits NivelJuego{
 object nivel2 inherits NivelJuego{
     override method enemigosParaEsteNivel(){    //Nivel2 con una mezca de patrones con enemigos iniciales y avazandos
         patronHorizontal1.spawnearEnemigosMixtos1()
-        patronHorizontal2.spawnearEnemigosMixtos2()
+        //patronHorizontal2.spawnearEnemigosMixtos2()
         patronHorizontal3.spawnearEnemigosMixtos3()
     }
 
@@ -82,7 +82,7 @@ object nivel2 inherits NivelJuego{
 object nivel3 inherits NivelJuego{
     override method enemigosParaEsteNivel(){    //Nivel3 solo con patrones de enemigos avanzados, estos tienen 2 vidas
         patronHorizontal1.spawnearEnemigosAvanzados()
-        patronHorizontal2.spawnearEnemigosAvanzados()
+        //patronHorizontal2.spawnearEnemigosAvanzados()
         patronHorizontal3.spawnearEnemigosAvanzados()
     }
 

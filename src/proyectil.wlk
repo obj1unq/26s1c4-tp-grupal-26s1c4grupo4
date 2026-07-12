@@ -1,8 +1,6 @@
 import manager.*
 import naves.*
 
-
-// sacar el oncolide de proyectil, ponerlo en nave
 class Proyectil{
     var property position
 
@@ -24,10 +22,7 @@ class Proyectil{
 
     method indicadorPosicion() 
 
-    method chocar(objeto){
-        objeto.colision()
-        managerProyectiles.remover(self) 
-    }
+    method colisionarCon(nave)
 
     method limpiarSiEsInvisible(){
         if(self.esUnoInvisible()){
@@ -36,17 +31,15 @@ class Proyectil{
     }
 
     method esUnoInvisible()
-
-    method colision(nave){}
 }
 
 class ProyectilJugador inherits Proyectil{
     override method indicadorImagen() = "Jugador"
 
     override method indicadorPosicion() = +1
-    
-    method colisionarEnemigo(enemigo){
-        enemigo.colision()
+
+    override method colisionarCon(nave){
+        nave.recibirImpactoJugador(self)
     }
 
     override method esUnoInvisible() = self.position().y() > 50
@@ -56,13 +49,11 @@ class ProyectilEnemigo inherits Proyectil{
     override method indicadorImagen() = "Enemigo"
 
     override method indicadorPosicion() = -1
-    
-    method colisionasteJugador(jugador){
-        jugador.colision()
+
+    override method colisionarCon(nave) {
+        nave.recibirImpactoEnemigo(self)
     }
-
-    method colisionarEnemigo(enemigo){}
-
+    
     override method esUnoInvisible() = self.position().y() < -10
 }
 
@@ -71,10 +62,7 @@ class VidaExtra inherits ProyectilEnemigo {
 
     override method image() = "corazon1.png" 
 
-    override method colisionasteJugador(jugador) {
-        jugador.sumarVida()               // Le da el beneficio al jugador
-        managerProyectiles.remover(self)  // Se elimina a sí misma usando el manager existente
+    override method colisionarCon(nave) {
+        nave.recibirVidaExtra(self)
     }
 }
-
-//Hay que arrglegar las colisiones, debe haber solo un metodo de colision.

@@ -22,7 +22,7 @@ class Nave{
             
             puedeDisparar = false
             
-            // Pasados los 500 milisegundos, volvemos a habilitar el disparo
+            // Pasados los 300 milisegundos, volvemos a habilitar el disparo
             game.schedule(tiempoEntreDisparos, { puedeDisparar = true })
         }
     }
@@ -35,6 +35,12 @@ class Nave{
 
     method indicadorPosicion()
 
+    method recibirImpactoJugador(proyectil) {}
+
+    method recibirImpactoEnemigo(proyectil) {}
+
+    method recibirVidaExtra(item) {}
+
     method colision(){
         self.sonidoColision()
         self.restarVida()
@@ -42,9 +48,6 @@ class Nave{
     }
 
     method sonidoColision()
-
-    method colisionarEnemigo(enemigo){}
-
 
     //Methods relacionados con las vidas de la nave 
     method restarVida(){
@@ -62,8 +65,6 @@ class Nave{
     }
 
     method morir()
-
-    method sumarVida() {}
 }
 
 object naveJugador inherits Nave(position = game.at(7, 1), vidas = 3){
@@ -94,11 +95,23 @@ object naveJugador inherits Nave(position = game.at(7, 1), vidas = 3){
 
     method posicionInicial() = game.at(7,1)
 
-    override method sumarVida() {
+    method sumarVida() {
      if (vidas < 3) {
             vidas +=  1
         }
     }
+
+    override method recibirImpactoEnemigo(proyectil) {
+        self.colision()                  // Resta vida, sonido, chequea muerte
+        managerProyectiles.remover(proyectil) // Elimina el proyectil
+    }
+
+    // Al jugador le beneficia la vida extra
+    override method recibirVidaExtra(item) {
+        self.sumarVida()
+        managerProyectiles.remover(item)
+    }
+
 }
 
 class NaveEnemigoInicial inherits Nave(vidas = self.vidaEnemigo()){ 
@@ -114,7 +127,6 @@ class NaveEnemigoInicial inherits Nave(vidas = self.vidaEnemigo()){
 
     method vidaEnemigo() = 1
     
-
     override method morir(){
         managerEnemigos.remover(self)
     }
@@ -136,6 +148,11 @@ class NaveEnemigoInicial inherits Nave(vidas = self.vidaEnemigo()){
             movioDerecha = true
         }
     }
+
+    override method recibirImpactoJugador(proyectil) {
+        self.colision()
+        managerProyectiles.remover(proyectil)
+    }
 }
 
 class NaveEnemigoAvanzado inherits NaveEnemigoInicial{ //Este enemigo tiene dos vidas
@@ -150,6 +167,7 @@ class NaveEnemigoAvanzado inherits NaveEnemigoInicial{ //Este enemigo tiene dos 
     }
     
     override method morir(){
+        managerEnemigos.registrarSpawnPendiente()
         super()
         game.schedule(700, {managerEnemigos.agregar(new NaveEnemigoInicial(position = self.position()))})
     }

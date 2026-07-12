@@ -33,13 +33,14 @@ class Manager {
 object managerEnemigos inherits Manager {
     /* Este objeto se va a encargar de el comportamiento de todo lo relacionado a los enemigos */
     var enemigosDerrotados = 0 
+    var enemigosPendientesPorSpawnear = 0
 
-    method hayEnemigos() = !elementos.isEmpty()
+    method hayEnemigos() = !elementos.isEmpty() or enemigosPendientesPorSpawnear > 0
 
     override method remover(enemigo) {
         super(enemigo)
         self.sumarEnemigoDerrotado()
-        self.spawnearVidaExtraAlDerrotarEnemigos(8, enemigo)
+        self.spawnearVidaExtraAlDerrotarEnemigos(6, enemigo)
         managerJuego.validarPasarASiguienteNivel()
     }
 
@@ -72,7 +73,12 @@ object managerEnemigos inherits Manager {
 
     override method agregar(enemigo) {
         super(enemigo)
-        game.onCollideDo(enemigo, {colisionado => colisionado.colisionarEnemigo(enemigo)})
+        game.onCollideDo(enemigo, {objeto => objeto.colisionarCon(enemigo)})
+        enemigosPendientesPorSpawnear = (enemigosPendientesPorSpawnear - 1).max(0)
+    }
+
+    method registrarSpawnPendiente() {
+        enemigosPendientesPorSpawnear += 1
     }
 
     method cantidadEnemigos() = elementos.size()

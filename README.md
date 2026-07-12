@@ -1,4 +1,4 @@
-# Wollok's Galaga
+# Galaga Wollok Edition
 
 
 ## Equipo de desarrollo
@@ -7,11 +7,11 @@
 - Alejandro Encina
 - Federico Napolitani
 
+
 ## Capturas
 /assets/pantallaInicio.png
 /assets/Ingame.png
 /assets/GameOver.png
-
 
 
 ## Instrucciones
