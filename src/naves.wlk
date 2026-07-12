@@ -9,7 +9,7 @@ class Nave{
     var property position
     var property vidas
     var puedeDisparar = true 
-    const tiempoEntreDisparos = 300
+    const tiempoEntreDisparos = 200
 
     method image() = "nave" + self.indicadorImagen() + ".png"
 
@@ -81,7 +81,13 @@ object naveJugador inherits Nave(position = game.at(7, 1), vidas = 3){
 
     override method disparar(){
         super()
-        sonidoDisparo.play()
+        self.reproducirSonidoDisparoSiSePuede()
+    }
+
+    method reproducirSonidoDisparoSiSePuede(){
+        if (!puedeDisparar) {
+            sonidoDisparo.play()
+        }
     }
 
     override method sonidoColision(){

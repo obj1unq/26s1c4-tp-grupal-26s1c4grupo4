@@ -62,12 +62,12 @@ object managerEnemigos inherits Manager {
     }
 
     method onTickDisparo() {
-        const intervaloRandomDeDisparo = 1500.randomUpTo(3000) 
+        const intervaloRandomDeDisparo = 1000.randomUpTo(3000) 
         return game.tick(intervaloRandomDeDisparo, {elementos.forEach({enemigo => enemigo.disparar()})}, true)
     }
 
     method onTickMovimiento() {
-        const intervaloRandomDeMovimiento = 750.randomUpTo(1250) 
+        const intervaloRandomDeMovimiento = 700.randomUpTo(1200) 
         return game.tick(intervaloRandomDeMovimiento, {elementos.forEach({enemigo => enemigo.moverse()})}, true)
     }
 
@@ -89,12 +89,12 @@ object managerProyectiles inherits Manager {
     relacionado que va a suceder en pantalla con ellos */
 
     method onTickVelocidadProyectiles() {
-        const intervaloVelocidad = 80
+        const intervaloVelocidad = 70
         return game.tick(intervaloVelocidad, {self.mover()}, true)
     }
 
     method limpiarProyectilesInvisibles() {
-        const intervaloLimpieza = 500.randomUpTo(1000) 
+        const intervaloLimpieza = 500 
         return game.tick(intervaloLimpieza, {elementos.forEach({proyectil => proyectil.limpiarSiEsInvisible()})}, true)
     }
 }

@@ -69,13 +69,6 @@ class PatronHorizontalCuatroEnemigos inherits PatronEnemigos{
     }
 
     method spawnearEnemigosMixtos2(){
-        self.spawnearEnemigo(new NaveEnemigoInicial(position = self.configurarPosicion(6 + nuevoValorX, nuevoValorY))) 
-        self.spawnearEnemigo(new NaveEnemigoAvanzado(position = self.configurarPosicion(0 + nuevoValorX, nuevoValorY)))
-        self.spawnearEnemigo(new NaveEnemigoAvanzado(position = self.configurarPosicion(-6 + nuevoValorX, nuevoValorY)))
-        self.spawnearEnemigo(new NaveEnemigoInicial(position = self.configurarPosicion(-12 + nuevoValorX, nuevoValorY)))
-    }
-
-    method spawnearEnemigosMixtos3(){
         self.spawnearEnemigo(new NaveEnemigoAvanzado(position = self.configurarPosicion(6 + nuevoValorX, nuevoValorY))) 
         self.spawnearEnemigo(new NaveEnemigoInicial(position = self.configurarPosicion(0 + nuevoValorX, nuevoValorY)))
         self.spawnearEnemigo(new NaveEnemigoAvanzado(position = self.configurarPosicion(-6 + nuevoValorX, nuevoValorY)))
@@ -83,12 +76,8 @@ class PatronHorizontalCuatroEnemigos inherits PatronEnemigos{
     }
 }
 
-object patronHorizontal1 inherits PatronHorizontalCuatroEnemigos(nuevoValorX = 3, nuevoValorY = 0){}
-
-object patronHorizontal2 inherits PatronHorizontalCuatroEnemigos(nuevoValorX = 0, nuevoValorY = 4){}
-
-object patronHorizontal3 inherits PatronHorizontalCuatroEnemigos(nuevoValorX = -3, nuevoValorY = 8){}
-
+object patronHorizontal1 inherits PatronHorizontalCuatroEnemigos(nuevoValorX = 3, nuevoValorY = 8){}
+object patronHorizontal2 inherits PatronHorizontalCuatroEnemigos(nuevoValorX = -3, nuevoValorY = 0){}
 
 //Actualizacion: 
 /*el spawn de enemigos funciona hay que mejorar assets y mejorar los patrones de aparicion 

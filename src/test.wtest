@@ -42,24 +42,21 @@ describe "Funcionamiento del manager de juego" {
     managerEnemigos.limpiar()
     assert.equals(0, managerEnemigos.cantidadEnemigos())
   }
-
-  
 }
 
 describe "Funcionamiento de los patrones de enemigos" {
 
-  test "patronHorizontal3 spawnea 4 enemigos avanzados" {
+  test "patronHorizontal1 spawnea 4 enemigos avanzados" {
     managerEnemigos.limpiar()
-    patronHorizontal3.spawnearEnemigosAvanzados()
+    patronHorizontal1.spawnearEnemigosAvanzados()
     assert.equals(4, managerEnemigos.cantidadEnemigos())
   }
 
-  test "patronHorizontal1 spawnea 4 enemigos iniciales" {
+  test "patronHorizontal2 spawnea 4 enemigos iniciales" {
     managerEnemigos.limpiar()
-    patronHorizontal1.spawnearEnemigosIniciales()
+    patronHorizontal2.spawnearEnemigosIniciales()
     assert.equals(4, managerEnemigos.cantidadEnemigos())
   }
-
 }
 
 describe "Proyectiles (proyectil.wlk)" {
@@ -81,7 +78,6 @@ describe "Proyectiles (proyectil.wlk)" {
 }
 
 describe "Naves enemigas (naves.wlk)" {
-
 
   test "NaveEnemigoAvanzado nace con 2 vidas" {
     const enemigo = new NaveEnemigoAvanzado(position = game.at(5, 5))
@@ -117,7 +113,6 @@ describe "Nave jugador (naves.wlk)" {
     assert.equals(3, naveJugador.vidas())
   }
 
-
   test "estaViva es false cuando las vidas llegan a 0" {
     galaga.iniciar()
     managerJuego.reiniciarJuego()
@@ -132,6 +127,5 @@ describe "Nave jugador (naves.wlk)" {
     naveJugador.colision()
     assert.equals(2, naveJugador.vidas())
   }
-  
 }
 
