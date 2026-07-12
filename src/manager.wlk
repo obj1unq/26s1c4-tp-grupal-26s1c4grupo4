@@ -33,13 +33,14 @@ class Manager {
 object managerEnemigos inherits Manager {
     /* Este objeto se va a encargar de el comportamiento de todo lo relacionado a los enemigos */
     var enemigosDerrotados = 0 
+    var enemigosPendientesPorSpawnear = 0
 
-    method hayEnemigos() = !elementos.isEmpty()
+    method hayEnemigos() = !elementos.isEmpty() or enemigosPendientesPorSpawnear > 0
 
     override method remover(enemigo) {
         super(enemigo)
         self.sumarEnemigoDerrotado()
-        self.spawnearVidaExtraAlDerrotarEnemigos(8, enemigo)
+        self.spawnearVidaExtraAlDerrotarEnemigos(6, enemigo)
         managerJuego.validarPasarASiguienteNivel()
     }
 
@@ -61,18 +62,23 @@ object managerEnemigos inherits Manager {
     }
 
     method onTickDisparo() {
-        const intervaloRandomDeDisparo = 1500.randomUpTo(3000) 
+        const intervaloRandomDeDisparo = 1000.randomUpTo(3000) 
         return game.tick(intervaloRandomDeDisparo, {elementos.forEach({enemigo => enemigo.disparar()})}, true)
     }
 
     method onTickMovimiento() {
-        const intervaloRandomDeMovimiento = 750.randomUpTo(1250) 
+        const intervaloRandomDeMovimiento = 700.randomUpTo(1200) 
         return game.tick(intervaloRandomDeMovimiento, {elementos.forEach({enemigo => enemigo.moverse()})}, true)
     }
 
     override method agregar(enemigo) {
         super(enemigo)
-        game.onCollideDo(enemigo, {colisionado => colisionado.colisionarEnemigo(enemigo)})
+        game.onCollideDo(enemigo, {objeto => objeto.colisionarCon(enemigo)})
+        enemigosPendientesPorSpawnear = (enemigosPendientesPorSpawnear - 1).max(0)
+    }
+
+    method registrarSpawnPendiente() {
+        enemigosPendientesPorSpawnear += 1
     }
 
     method cantidadEnemigos() = elementos.size()
@@ -83,12 +89,12 @@ object managerProyectiles inherits Manager {
     relacionado que va a suceder en pantalla con ellos */
 
     method onTickVelocidadProyectiles() {
-        const intervaloVelocidad = 80
+        const intervaloVelocidad = 70
         return game.tick(intervaloVelocidad, {self.mover()}, true)
     }
 
     method limpiarProyectilesInvisibles() {
-        const intervaloLimpieza = 500.randomUpTo(1000) 
+        const intervaloLimpieza = 500 
         return game.tick(intervaloLimpieza, {elementos.forEach({proyectil => proyectil.limpiarSiEsInvisible()})}, true)
     }
 }

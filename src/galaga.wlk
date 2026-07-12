@@ -6,7 +6,7 @@ object galaga {
     game.cellSize(32)
     game.height(32)
     game.width(32)
-    game.title("Galaga")
+    game.title("Galaga Wollok Edition")
     nivelInicial.iniciar()
     game.start()
   }
