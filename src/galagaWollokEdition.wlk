@@ -1,7 +1,7 @@
 import wollok.game.*
 import nivel.*
 
-object galaga {
+object galagaWollokEdition {
   method iniciar() {
     game.cellSize(32)
     game.height(32)

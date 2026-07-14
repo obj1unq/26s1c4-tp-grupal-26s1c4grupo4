@@ -1,7 +1,7 @@
-import galaga.*
+import galagaWollokEdition.*
 
 program juego{
-   galaga.iniciar()
+   galagaWollokEdition.iniciar()
 }
 
 

@@ -1,4 +1,4 @@
-import src.galaga.*
+import galagaWollokEdition.*
 import src.sonido.*
 import nivel.*
 import config.*
@@ -19,7 +19,6 @@ class Manager {
     }
 
     method remover(elemento) {
-        // Primero saco el visual, despues lo elimino de la lista (por las dudas de si pierde la referencia)
         game.removeVisual(elemento) 
         elementos.remove(elemento)
     }
@@ -108,8 +107,14 @@ object managerJuego {
 
     method pasarASiguienteNivel() {
         self.limpiarTablero() 
-        nivelActual = nivelActual.siguienteNivel()   
+        self.actualizarNivelActual()  
         self.iniciarJuego()
+    }
+
+    method actualizarNivelActual(){
+        const nuevoNivelActual = nivelActual.siguienteNivel()  
+
+        nivelActual = nuevoNivelActual
     }
 
     method validarPasarASiguienteNivel() {
@@ -132,11 +137,21 @@ object managerJuego {
     }
 
     method reiniciarJuego() { 
-        self.limpiarTablero()      // 1. Vaciamos enemigos y proyectiles
-        musicaInicio.sacarMusica()
-        nivelActual = nivelInicial // 2. Volvemos al nivel de introducción/inicial
-        naveJugador.restart()      // 3. Reseteamos la nave usando 'restart()' como lo tenés en naves.wlk
-        config.juegoPerdido(false)
-        nivelActual.iniciar()      // 4. Arrancamos el nivel inicial de cero
+        self.volverAlNivelInicial()
+        self.configuracionParaReiniciarJuego()
     } 
+
+    method volverAlNivelInicial(){
+        const nivelQueIniciaElJuego = nivelInicial
+
+        nivelActual = nivelQueIniciaElJuego
+    }
+
+    method configuracionParaReiniciarJuego(){
+        self.limpiarTablero()
+        musicaInicio.sacarMusica()
+        naveJugador.restart()      
+        config.juegoPerdido(false)
+        nivelActual.iniciar() 
+    }
 }

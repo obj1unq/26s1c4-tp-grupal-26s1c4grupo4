@@ -1,5 +1,5 @@
 import src.nivel.*
-import src.galaga.*
+import galagaWollokEdition.*
 import src.hud.*
 import manager.*
 import naves.*
@@ -9,7 +9,7 @@ import wollok.game.*
 describe "Funcionamiento del manager de juego" {
 
   test "misma cantidad de enemigos al reiniciar" {
-    galaga.iniciar()
+    galagaWollokEdition.iniciar()
     managerJuego.pasarASiguienteNivel()
     assert.equals(8, managerEnemigos.cantidadEnemigos())
     managerJuego.terminarJuegoPerdido()
@@ -19,7 +19,7 @@ describe "Funcionamiento del manager de juego" {
   }
 
   test "mismo nivel al reiniciar" {
-    galaga.iniciar()
+    galagaWollokEdition.iniciar()
     managerJuego.pasarASiguienteNivel()
     assert.equals(nivel1, managerJuego.nivelActual())
     managerJuego.terminarJuegoPerdido()
@@ -69,7 +69,7 @@ describe "Proyectiles (proyectil.wlk)" {
   }
 
   test "un proyectil enemigo que colisiona contra el jugador le resta una vida" {
-    galaga.iniciar()
+    galagaWollokEdition.iniciar()
     managerJuego.reiniciarJuego()
     const proyectil = new ProyectilEnemigo(position = game.at(7, 2))
     proyectil.colisionarCon(naveJugador)
@@ -85,7 +85,7 @@ describe "Naves enemigas (naves.wlk)" {
   }
 
   test "un enemigo avanzado no muere con la primera colision, solo pierde una vida" {
-    galaga.iniciar()
+    galagaWollokEdition.iniciar()
     managerEnemigos.limpiar()
     const enemigo = new NaveEnemigoAvanzado(position = game.at(5, 5))
     managerEnemigos.agregar(enemigo)
@@ -96,7 +96,7 @@ describe "Naves enemigas (naves.wlk)" {
 
 
   test "moverse alterna la direccion entre derecha e izquierda" {
-    galaga.iniciar()
+    galagaWollokEdition.iniciar()
     const enemigo = new NaveEnemigoInicial(position = game.at(5, 5))
     enemigo.moverse() // primer movimiento: derecha
     assert.equals(6, enemigo.position().x())
@@ -108,13 +108,13 @@ describe "Naves enemigas (naves.wlk)" {
 describe "Nave jugador (naves.wlk)" {
 
   test "al iniciar el juego la nave jugador tiene 3 vidas" {
-    galaga.iniciar()
+    galagaWollokEdition.iniciar()
     managerJuego.reiniciarJuego()
     assert.equals(3, naveJugador.vidas())
   }
 
   test "estaViva es false cuando las vidas llegan a 0" {
-    galaga.iniciar()
+    galagaWollokEdition.iniciar()
     managerJuego.reiniciarJuego()
     naveJugador.vidas(1)
     naveJugador.restarVida()
@@ -122,7 +122,7 @@ describe "Nave jugador (naves.wlk)" {
   }
 
   test "colision resta una vida a la nave jugador" {
-    galaga.iniciar()
+    galagaWollokEdition.iniciar()
     managerJuego.reiniciarJuego()
     naveJugador.colision()
     assert.equals(2, naveJugador.vidas())
