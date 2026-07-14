@@ -10,6 +10,7 @@ class Nivel{
     method iniciar(){
         game.clear()    
         game.addVisual(self.imagenFondo())
+        config.keybindInicioSiguienteNivel()
     }
 
     method imagenFondo() = fondo
@@ -21,7 +22,6 @@ object nivelInicial inherits Nivel{
     override method iniciar() {
         super() 
         musicaInicio.iniciar()
-        config.keybindInicioNivel1()
     }
 
     override method siguienteNivel() = nivel1
@@ -29,7 +29,7 @@ object nivelInicial inherits Nivel{
     override method imagenFondo() = fondoInicial
 }
 
-object nivelFinal inherits Nivel{   //Para activar esta imagen se debe superar los tres niveles
+object nivelFinal inherits Nivel{   //Para activar este nivel se debe superar los tres niveles del juego (por ahora)
     override method iniciar() {  
         super()
         naveJugador.vidas(3)
@@ -70,8 +70,8 @@ object nivel1 inherits NivelJuego{
 
 object nivel2 inherits NivelJuego{
     override method enemigosParaEsteNivel(){    //Nivel2 con una mezca de patrones con enemigos iniciales y avazandos
-        patronHorizontal1.spawnearEnemigosMixtos1()
-        patronHorizontal2.spawnearEnemigosMixtos2()
+        patronHorizontal2.spawnearEnemigosMixtos1()
+        patronHorizontal3.spawnearEnemigosMixtos2()
     }
 
     override method siguienteNivel() = nivel3
@@ -80,7 +80,7 @@ object nivel2 inherits NivelJuego{
 object nivel3 inherits NivelJuego{
     override method enemigosParaEsteNivel(){    //Nivel3 solo con patrones de enemigos avanzados, estos tienen 2 vidas
         patronHorizontal1.spawnearEnemigosAvanzados()
-        patronHorizontal2.spawnearEnemigosAvanzados()
+        patronHorizontal3.spawnearEnemigosAvanzados()
     }
 
     override method siguienteNivel() = nivelFinal

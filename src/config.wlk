@@ -1,7 +1,7 @@
-import naves.* //importar modulo 
+import naves.* 
 import manager.*
 import wollok.game.*
-import galaga.*
+import galagaWollokEdition.*
 import hud.*
 import nivel.*
 
@@ -10,18 +10,17 @@ object config{
 
     method keybinds(){
       if(!juegoPerdido){
-        keyboard.right().onPressDo({derecha.mover(naveJugador)})    //moverse derecha
-        keyboard.left().onPressDo({izquierda.mover(naveJugador)})  //moverse izquierda
-        keyboard.z().onPressDo({naveJugador.disparar()})        //disparar
+        keyboard.right().onPressDo({derecha.mover(naveJugador)})   
+        keyboard.left().onPressDo({izquierda.mover(naveJugador)})  
+        keyboard.z().onPressDo({naveJugador.disparar()})        
       }
     }
 
-    
     method keybindReinicio(){
-        keyboard.x().onPressDo({ managerJuego.reiniciarJuego() })         //restart
+        keyboard.x().onPressDo({ managerJuego.reiniciarJuego() })   
     }
 
-    method keybindInicioNivel1(){
+    method keybindInicioSiguienteNivel(){
         keyboard.enter().onPressDo({ managerJuego.pasarASiguienteNivel() })
     }
 }
